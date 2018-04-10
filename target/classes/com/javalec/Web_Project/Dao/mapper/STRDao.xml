@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.javalec.Web_Project.Dao.STRDao">
+	<select id="listDao" resultType="com.javalec.Web_Project.Dto.StoreDto">
+		SELECT * 
+		FROM STR 
+		<![CDATA[WHERE LAT>=#{param1} AND LAT<=#{param2} AND LNG>=#{param3} AND LNG<=#{param4}]]>
+	</select>
+
+	
+</mapper>
