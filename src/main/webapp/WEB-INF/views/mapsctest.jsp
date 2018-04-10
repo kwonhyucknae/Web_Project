@@ -44,14 +44,29 @@ Licence URI: http://www.os-templates.com/template-terms
 		            $.ajax({
 		        		type:"post",
 		        		url:"markermake",
-		        		//data:{"swlat":swLatLng.getLat(),"swlng":swLatLng.getLng(),"nelat":neLatLng.getLat(),"nelng":neLatLng.getLng()},
-		        		data:{"swlat":37.3,"swlng":127.15,"nelat":37.7,"nelng":127.7},
+		        		data:{"swlat":swLatLng.getLat(),"swlng":swLatLng.getLng(),"nelat":neLatLng.getLat(),"nelng":neLatLng.getLng()},
+		        		//data:{"swlat":37.3,"swlng":127.15,"nelat":37.7,"nelng":127.7},
 		        		
 		        		dataType:"json",
 		        		success:function(data)
 		        		{
 		        			var dataList=data['DATA'];
 		        			console.log(dataList);
+		        			for(var i in dataList)
+		        			{
+		        				var positionslatlng=new daum.maps.LatLng(dataList[i].lng,dataList[i].lat);
+		        				
+		        				var marker=new daum.maps.Marker({
+		        					map:map,
+		        					position:positionslatlng,
+		        					title:dataList[i].name
+		        				});
+		        			}
+							//
+		        			var list_html="";
+		        			list_html+="<li>"+dataList[0].lng+"</li>";
+		        			$('#list_test').html(list_html);
+		        			
 		        			//alert("성공"+dataList[0]);
 		        		},
 		        		error:function(request,status,error)
@@ -75,37 +90,95 @@ Licence URI: http://www.os-templates.com/template-terms
 	    	
 		    var latlng = map.getCenter(); 
 		   
-		   
-		    $.ajax({
-		    	type:"post",
-		    	url:"testajax",
-		    	data:{"test":latlng.getLat()},
-		    	dataType:"json",
-		    	success:function(data)
-		    	{
-		    		var result2 = Math.floor(Math.random() * 10) + 1;
-		            //document.write(result2);
-		    	}, 
-		    	error:function(request,status,error){
-		            //alert("code:"+request.status+"\n"+"error:"+error);
-		        }
-		    });
-		    
-		  
-		    var message = '변경된 지도 중심좌표는 ' + latlng.getLat() + ' 이고, ';
-		    message += '경도는 ' + latlng.getLng() + ' 입니다';
-		    
-		    
-		    var resultDiv = document.getElementById('rs');  
-		    resultDiv.innerHTML = message;
-		    
+		    bounds = map.getBounds();
+        	swLatLng=bounds.getSouthWest();
+        	neLatLng=bounds.getNorthEast();
+            $.ajax({
+        		type:"post",
+        		url:"markermake",
+        		data:{"swlat":swLatLng.getLat(),"swlng":swLatLng.getLng(),"nelat":neLatLng.getLat(),"nelng":neLatLng.getLng()},
+        		//data:{"swlat":37.3,"swlng":127.15,"nelat":37.7,"nelng":127.7},
+        		
+        		dataType:"json",
+        		success:function(data)
+        		{
+        			var dataList=data['DATA'];
+        			console.log(dataList);
+        			for(var i in dataList)
+        			{
+        				var positionslatlng=new daum.maps.LatLng(dataList[i].lng,dataList[i].lat);
+        				
+        				var marker=new daum.maps.Marker({
+        					map:map,
+        					position:positionslatlng,
+        					title:dataList[i].name
+        				});
+        			}
+					//
+        			var list_html="";
+        			list_html+="<li>"+dataList[0].lng+"</li>";
+        			$('#list_test').html(list_html);
+        			
+        			//alert("성공"+dataList[0]);
+        		},
+        		error:function(request,status,error)
+        		{
+        			alert("code:"+request.status+"\n"+"error:"+error);
+        		}
+        	});
 		    
 		});
 	
+		// 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
+		var zoomControl = new daum.maps.ZoomControl();
+		map.addControl(zoomControl, daum.maps.ControlPosition.RIGHT);
+
+		// 지도가 확대 또는 축소되면 마지막 파라미터로 넘어온 함수를 호출하도록 이벤트를 등록합니다
+		daum.maps.event.addListener(map, 'zoom_changed', function() {        
+
+				bounds = map.getBounds();
+	        	swLatLng=bounds.getSouthWest();
+	        	neLatLng=bounds.getNorthEast();
+	            $.ajax({
+	        		type:"post",
+	        		url:"markermake",
+	        		data:{"swlat":swLatLng.getLat(),"swlng":swLatLng.getLng(),"nelat":neLatLng.getLat(),"nelng":neLatLng.getLng()},
+	        		//data:{"swlat":37.3,"swlng":127.15,"nelat":37.7,"nelng":127.7},
+	        		
+	        		dataType:"json",
+	        		success:function(data)
+	        		{
+	        			var dataList=data['DATA'];
+	        			var list_html="";
+	        			console.log(dataList);
+	        			for(var i in dataList)
+	        			{
+	        				var positionslatlng=new daum.maps.LatLng(dataList[i].lng,dataList[i].lat);
+	        				
+	        				var marker=new daum.maps.Marker({
+	        					map:map,
+	        					position:positionslatlng,
+	        					title:dataList[i].name
+	        				});
+	        				list_html+="<div style=\"width:600px; height:100px; box-shadow: 1px 1px 3px #a5a5a5;margin: 0 8px 8px;\"><h2>"+dataList[i].name+
+		        			"</h2><p>"+dataList[i].dae+
+		        			"</p><p>"+dataList[i].joong+
+		        			"</p></div>";
+	        			}
+						
+	        			$('#list_test2').html(list_html);
+	        			
+	        			//alert("성공"+dataList[0]);
+	        		},
+	        		error:function(request,status,error)
+	        		{
+	        			alert("code:"+request.status+"\n"+"error:"+error);
+	        		}
+	        	});
+		    
+		});
 		
 	}
-	
-	//마커 생성하기
 
 	</script>
 
@@ -234,37 +307,11 @@ overflow-x:hidden;
       <!-- ################################################################################################ -->
       <h6>Lorem ipsum dolor</h6>
       <nav class="sdb_holder">
-        <ul>
-          <li><a href="#">Navigation - Level 1</a></li>
-          <li><a href="#">Navigation - Level 1</a>
-            <ul>
-              <li><a href="#">Navigation - Level 2</a></li>
-              <li><a href="#">Navigation - Level 2</a></li>
-            </ul>
-          </li>
-          <li><a href="#">Navigation - Level 1</a>
-            <ul>
-              <li><a href="#">Navigation - Level 2</a></li>
-              <li><a href="#">Navigation - Level 2</a>
-                <ul>
-                  <li><a href="#">Navigation - Level 3</a></li>
-                  <li><a href="#">Navigation - Level 3</a></li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-          <li><a href="#">Navigation - Level 1</a></li>
-        </ul>
         <p id="rs"></p>
- 
-        test</br>
-        test</br>
-        test</br>
-        test</br>
-        test</br>
-        test</br>
-        test</br>test</br>test</br>test</br>test</br>test</br>test</br>test</br>test</br>test</br>test</br>test</br>test</br>
-        test</br>test</br>test</br>test</br>test</br>test</br>test</br>test</br>test</br>
+ 		<ul id="list_test">
+ 		</ul>
+        <div id="list_test2">
+        </div>
         
         <c:forEach items="${list}" var="dto">
 		<div style="width:600px; height:100px; box-shadow: 1px 1px 3px #a5a5a5;margin: 0 8px 8px;">
