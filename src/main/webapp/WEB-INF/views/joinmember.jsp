@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <!--
 Template Name: Corklow
@@ -15,45 +15,45 @@ Licence URI: http://www.os-templates.com/template-terms
     function sample4_execDaumPostcode() {
         new daum.Postcode({
             oncomplete: function(data) {
-                // ∆Àæ˜ø°º≠ ∞Àªˆ∞·∞˙ «◊∏Ò¿ª ≈¨∏Ø«ﬂ¿ª∂ß Ω««‡«“ ƒ⁄µÂ∏¶ ¿€º∫«œ¥¬ ∫Œ∫–.
+                // ÌåùÏóÖÏóêÏÑú Í≤ÄÏÉâÍ≤∞Í≥º Ìï≠Î™©ÏùÑ ÌÅ¥Î¶≠ÌñàÏùÑÎïå Ïã§ÌñâÌï† ÏΩîÎìúÎ•º ÏûëÏÑ±ÌïòÎäî Î∂ÄÎ∂Ñ.
 
-                // µµ∑Œ∏Ì ¡÷º“¿« ≥Î√‚ ±‘ƒ¢ø° µ˚∂Û ¡÷º“∏¶ ¡∂«’«—¥Ÿ.
-                // ≥ª∑¡ø¿¥¬ ∫Øºˆ∞° ∞™¿Ã æ¯¥¬ ∞ÊøÏø£ ∞¯πÈ('')∞™¿ª ∞°¡ˆπ«∑Œ, ¿Ã∏¶ ¬¸∞Ì«œø© ∫–±‚ «—¥Ÿ.
-                var fullRoadAddr = data.roadAddress; // µµ∑Œ∏Ì ¡÷º“ ∫Øºˆ
-                var extraRoadAddr = ''; // µµ∑Œ∏Ì ¡∂«’«¸ ¡÷º“ ∫Øºˆ
+                // ÎèÑÎ°úÎ™Ö Ï£ºÏÜåÏùò ÎÖ∏Ï∂ú Í∑úÏπôÏóê Îî∞Îùº Ï£ºÏÜåÎ•º Ï°∞Ìï©ÌïúÎã§.
+                // ÎÇ¥Î†§Ïò§Îäî Î≥ÄÏàòÍ∞Ä Í∞íÏù¥ ÏóÜÎäî Í≤ΩÏö∞Ïóî Í≥µÎ∞±('')Í∞íÏùÑ Í∞ÄÏßÄÎØÄÎ°ú, Ïù¥Î•º Ï∞∏Í≥†ÌïòÏó¨ Î∂ÑÍ∏∞ ÌïúÎã§.
+                var fullRoadAddr = data.roadAddress; // ÎèÑÎ°úÎ™Ö Ï£ºÏÜå Î≥ÄÏàò
+                var extraRoadAddr = ''; // ÎèÑÎ°úÎ™Ö Ï°∞Ìï©Ìòï Ï£ºÏÜå Î≥ÄÏàò
 
-                // π˝¡§µø∏Ì¿Ã ¿÷¿ª ∞ÊøÏ √ﬂ∞°«—¥Ÿ. (π˝¡§∏Æ¥¬ ¡¶ø‹)
-                // π˝¡§µø¿« ∞ÊøÏ ∏∂¡ˆ∏∑ πÆ¿⁄∞° "µø/∑Œ/∞°"∑Œ ≥°≥≠¥Ÿ.
-                if(data.bname !== '' && /[µø|∑Œ|∞°]$/g.test(data.bname)){
+                // Î≤ïÏ†ïÎèôÎ™ÖÏù¥ ÏûàÏùÑ Í≤ΩÏö∞ Ï∂îÍ∞ÄÌïúÎã§. (Î≤ïÏ†ïÎ¶¨Îäî Ï†úÏô∏)
+                // Î≤ïÏ†ïÎèôÏùò Í≤ΩÏö∞ ÎßàÏßÄÎßâ Î¨∏ÏûêÍ∞Ä "Îèô/Î°ú/Í∞Ä"Î°ú ÎÅùÎÇúÎã§.
+                if(data.bname !== '' && /[Îèô|Î°ú|Í∞Ä]$/g.test(data.bname)){
                     extraRoadAddr += data.bname;
                 }
-                // ∞«π∞∏Ì¿Ã ¿÷∞Ì, ∞¯µø¡÷≈√¿œ ∞ÊøÏ √ﬂ∞°«—¥Ÿ.
+                // Í±¥Î¨ºÎ™ÖÏù¥ ÏûàÍ≥†, Í≥µÎèôÏ£ºÌÉùÏùº Í≤ΩÏö∞ Ï∂îÍ∞ÄÌïúÎã§.
                 if(data.buildingName !== '' && data.apartment === 'Y'){
                    extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
                 }
-                // µµ∑Œ∏Ì, ¡ˆπ¯ ¡∂«’«¸ ¡÷º“∞° ¿÷¿ª ∞ÊøÏ, ∞˝»£±Ó¡ˆ √ﬂ∞°«— √÷¡æ πÆ¿⁄ø≠¿ª ∏∏µÁ¥Ÿ.
+                // ÎèÑÎ°úÎ™Ö, ÏßÄÎ≤à Ï°∞Ìï©Ìòï Ï£ºÏÜåÍ∞Ä ÏûàÏùÑ Í≤ΩÏö∞, Í¥ÑÌò∏ÍπåÏßÄ Ï∂îÍ∞ÄÌïú ÏµúÏ¢Ö Î¨∏ÏûêÏó¥ÏùÑ ÎßåÎì†Îã§.
                 if(extraRoadAddr !== ''){
                     extraRoadAddr = ' (' + extraRoadAddr + ')';
                 }
-                // µµ∑Œ∏Ì, ¡ˆπ¯ ¡÷º“¿« ¿Øπ´ø° µ˚∂Û «ÿ¥Á ¡∂«’«¸ ¡÷º“∏¶ √ﬂ∞°«—¥Ÿ.
+                // ÎèÑÎ°úÎ™Ö, ÏßÄÎ≤à Ï£ºÏÜåÏùò Ïú†Î¨¥Ïóê Îî∞Îùº Ìï¥Îãπ Ï°∞Ìï©Ìòï Ï£ºÏÜåÎ•º Ï∂îÍ∞ÄÌïúÎã§.
                 if(fullRoadAddr !== ''){
                     fullRoadAddr += extraRoadAddr;
                 }
 
-                // øÏ∆Ìπ¯»£øÕ ¡÷º“ ¡§∫∏∏¶ «ÿ¥Á « µÂø° ≥÷¥¬¥Ÿ.
-                document.getElementById('sample4_postcode').value = data.zonecode; //5¿⁄∏Æ ªıøÏ∆Ìπ¯»£ ªÁøÎ
+                // Ïö∞Ìé∏Î≤àÌò∏ÏôÄ Ï£ºÏÜå Ï†ïÎ≥¥Î•º Ìï¥Îãπ ÌïÑÎìúÏóê ÎÑ£ÎäîÎã§.
+                document.getElementById('sample4_postcode').value = data.zonecode; //5ÏûêÎ¶¨ ÏÉàÏö∞Ìé∏Î≤àÌò∏ ÏÇ¨Ïö©
                 document.getElementById('sample4_roadAddress').value = fullRoadAddr;
                 document.getElementById('sample4_jibunAddress').value = data.jibunAddress;
 
-                // ªÁøÎ¿⁄∞° 'º±≈√ æ»«‘'¿ª ≈¨∏Ø«— ∞ÊøÏ, øπªÛ ¡÷º“∂Û¥¬ «•Ω√∏¶ «ÿ¡ÿ¥Ÿ.
+                // ÏÇ¨Ïö©ÏûêÍ∞Ä 'ÏÑ†ÌÉù ÏïàÌï®'ÏùÑ ÌÅ¥Î¶≠Ìïú Í≤ΩÏö∞, ÏòàÏÉÅ Ï£ºÏÜåÎùºÎäî ÌëúÏãúÎ•º Ìï¥Ï§ÄÎã§.
                 if(data.autoRoadAddress) {
-                    //øπªÛµ«¥¬ µµ∑Œ∏Ì ¡÷º“ø° ¡∂«’«¸ ¡÷º“∏¶ √ﬂ∞°«—¥Ÿ.
+                    //ÏòàÏÉÅÎêòÎäî ÎèÑÎ°úÎ™Ö Ï£ºÏÜåÏóê Ï°∞Ìï©Ìòï Ï£ºÏÜåÎ•º Ï∂îÍ∞ÄÌïúÎã§.
                     var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
-                    document.getElementById('guide').innerHTML = '(øπªÛ µµ∑Œ∏Ì ¡÷º“ : ' + expRoadAddr + ')';
+                    document.getElementById('guide').innerHTML = '(ÏòàÏÉÅ ÎèÑÎ°úÎ™Ö Ï£ºÏÜå : ' + expRoadAddr + ')';
 
                 } else if(data.autoJibunAddress) {
                     var expJibunAddr = data.autoJibunAddress;
-                    document.getElementById('guide').innerHTML = '(øπªÛ ¡ˆπ¯ ¡÷º“ : ' + expJibunAddr + ')';
+                    document.getElementById('guide').innerHTML = '(ÏòàÏÉÅ ÏßÄÎ≤à Ï£ºÏÜå : ' + expJibunAddr + ')';
 
                 } else {
                     document.getElementById('guide').innerHTML = '';
@@ -214,24 +214,24 @@ width:100px;}
       <!-- ################################################################################################ -->
       <div class="scrollable">
           <center>
-          <form action="" name="join">
+          <form action="joininsert" name="join">
           	<table width="800">
           		<tr height="40">
-          		<td align="center"><b>[»∏ø¯∞°¿‘]</b></td>
+          		<td align="center"><b>[ÌöåÏõêÍ∞ÄÏûÖ]</b></td>
           		</tr>  
          	 </table>
           	<table width="700" height="600" cellpadding="0" style="border-collapse:collapse; font-size:9pt;">
           		<tr class="register" height="30">
           			<td width="5%" align="center">*</td>
-          			<td width="15%">»∏ø¯ ID</td>
-          			<td><input type="text" name="wUserID">&nbsp;<a href="">[ID ¡ﬂ∫π ∞ÀªÁ]</a></td>
+          			<td width="15%">ÌöåÏõê ID</td>
+          			<td><input type="text" name="wUserID">&nbsp;<a href="">[ID Ï§ëÎ≥µ Í≤ÄÏÇ¨]</a></td>
           		</tr>
           		<tr height="7">
    					<td colspan="3"><hr/></td>
           		</tr>
           		<tr class="register" height="30">
           			<td width="5%" align="center">*</td>
-          			<td width="15%">∫Òπ–π¯»£</td>
+          			<td width="15%">ÎπÑÎ∞ÄÎ≤àÌò∏</td>
           			<td><input type="password" name="wUserPW" id="pw" onchange="isSame()"></td>
           		</tr>
           		<tr height="7">
@@ -239,7 +239,7 @@ width:100px;}
           		</tr>
           		<tr class="register" height="30">
           			<td width="5%" align="center">*</td>
-          			<td width="15%">∫Òπ–π¯»£ »Æ¿Œ</td>
+          			<td width="15%">ÎπÑÎ∞ÄÎ≤àÌò∏ ÌôïÏù∏</td>
           			<td><input type="password" name="wUserPWConfirm" id="pwCheck" onchange="isSame()">&nbsp;&nbsp;<span id="same"></span></td>
           		</tr>
           		<tr height="7">
@@ -247,7 +247,7 @@ width:100px;}
           		</tr>
           		<tr class="register" height="30">
           			<td width="5%" align="center">*</td>
-          			<td width="15%">¿Ã∏ß</td>
+          			<td width="15%">Ïù¥Î¶Ñ</td>
           			<td><input type="text" name="wUserName""></td>
           		</tr>
           		<tr height="7">
@@ -255,8 +255,8 @@ width:100px;}
           		</tr>
           		<tr class="register" height="30">
           			<td width="5%" align="center">*</td>
-          			<td width="15%">º∫∫∞</td>
-          			<td>≥≤º∫<input type="radio" name="wUserGender" value="1" checked/>&nbsp;ø©º∫<input type="radio" name="wUserGender" value="2"/>
+          			<td width="15%">ÏÑ±Î≥Ñ</td>
+          			<td>ÎÇ®ÏÑ±<input type="radio" name="wUserGender" value="1" checked/>&nbsp;Ïó¨ÏÑ±<input type="radio" name="wUserGender" value="2"/>
           			</td>
           		</tr>
           		<tr height="7">
@@ -264,7 +264,7 @@ width:100px;}
           		</tr>
           		<tr class="register" height="30">
           			<td width="5%" align="center">*</td>
-          			<td width="15%">»ﬁ¥Î¿¸»≠</td>
+          			<td width="15%">Ìú¥ÎåÄÏ†ÑÌôî</td>
           			<td><input type="tel" name="wUserCellPhone""></td>
           		</tr>
           		<tr height="7">
@@ -272,22 +272,22 @@ width:100px;}
           		</tr>
           		<tr>
           			<td width="5%" align="center">*</td>
-          			<td width="15%">¡÷ º“</td>
+          			<td width="15%">Ï£º ÏÜå</td>
           			<td>
-          				<input type="text" size="10" name="wPostCode" id="sample4_postcode" placeholder="øÏ∆Ìπ¯»£" readonly="readonly" onclick="DaumPostcode()">
-          				<input type="button" onclick="sample4_execDaumPostcode()" value="øÏ∆Ìπ¯»£ √£±‚"><br><br/>
-          				<input type="text" size="30" name="wRoadAddress" id="sample4_roadAddress" placeholder="µµ∑Œ∏Ì¡÷º“" readonly="readonly" onclick="DaumPostcode()">
-          				<input type="text" size="30" name="wJibunAddress" id="sample4_jibunAddress" placeholder="¡ˆπ¯¡÷º“" readonly="readonly" onclick="DaumPostcode()">
+          				<input type="text" size="10" name="wPostCode" id="sample4_postcode" placeholder="Ïö∞Ìé∏Î≤àÌò∏" readonly="readonly" onclick="DaumPostcode()">
+          				<input type="button" onclick="sample4_execDaumPostcode()" value="Ïö∞Ìé∏Î≤àÌò∏ Ï∞æÍ∏∞"><br><br/>
+          				<input type="text" size="30" name="wRoadAddress" id="sample4_roadAddress" placeholder="ÎèÑÎ°úÎ™ÖÏ£ºÏÜå" readonly="readonly" onclick="DaumPostcode()">
+          				<input type="text" size="30" name="wJibunAddress" id="sample4_jibunAddress" placeholder="ÏßÄÎ≤àÏ£ºÏÜå" readonly="readonly" onclick="DaumPostcode()">
           				<br/><span id="guide" style="color:#999;font-size:10px;"></span>
-          				<br/><br/><input type="text" name="wRestAddress" placeholder="≥™∏”¡ˆ ¡÷º“" size="70">
+          				<br/><br/><input type="text" name="wRestAddress" placeholder="ÎÇòÎ®∏ÏßÄ Ï£ºÏÜå" size="70">
           			</td>
           		</tr>
           		
           		</table>
           		<br/>
           	 
-          			<input type="submit" class="btn" value="»∏ø¯∞°¿‘">
-        			<a href="boardlist" class="btn" id="list">√Î º“</a>
+          			<input type="submit" class="btn" value="ÌöåÏõêÍ∞ÄÏûÖ">
+        			<a href="boardlist" class="btn" id="list">Ï∑® ÏÜå</a>
           			
           		
           		

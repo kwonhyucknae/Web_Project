@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.javalec.Web_Project.Dao.JoinDao">
+	<insert id="insertJoin">
+		INSERT INTO JOIN (ID, PW, NAME,SEX,PHONE,POSTCODE,ROADADDR,JIBUNADDR,RESTADDR) VALUES (#{param1}, #{param2}, #{param3},#{param4},#{param5},#{param6},#{param7},#{param8},#{param9})
+	</insert>
+
+	<select id="logincheck" resultType="com.javalec.Web_Project.Dto.JoinDto">
+	    SELECT *
+	    FROM JOIN
+	    WHERE ID=#{param1}
+	</select>
+	
+</mapper>

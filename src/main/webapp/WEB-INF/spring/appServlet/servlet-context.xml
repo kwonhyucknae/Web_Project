@@ -48,7 +48,12 @@
 <beans:bean id="maptest" class="net.sf.json.spring.web.servlet.view.JsonView">
 
 </beans:bean>
-	
+	<interceptors>
+	    <interceptor>
+	        <mapping path=""/>
+			<beans:bean class="com.javalec.Web_Project.InterSeptor.LoginCheckInterSeptor"/>	            
+		</interceptor>
+	</interceptors>
 	
 	<context:component-scan base-package="com.javalec.Web_Project" />
 	
