@@ -19,17 +19,13 @@ Licence URI: http://www.os-templates.com/template-terms
 <link href="resources/layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
 <style>
 .th-1 {
-width:100px;
-}
+width:100px;}
 .th-2{
-width:600px;
-}
+width:600px;}
 .th-3{
-width:100px;
-}
+width:100px;}
 .th-4{
-width:100px;
-}
+width:100px;}
 .button-8{
   width:100px;
   height:50px;

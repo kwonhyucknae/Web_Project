@@ -10,6 +10,27 @@ Licence URI: http://www.os-templates.com/template-terms
 -->
 <html>
 <head>
+<!-- JAVASCRIPTS -->
+<script src="resources/layout/scripts/jquery.min.js"></script>
+<script src="resources/layout/scripts/jquery.backtotop.js"></script>
+<script src="resources/layout/scripts/jquery.mobilemenu.js"></script>
+<script type="text/javascript">
+var tmp="<%= request.getSession().getAttribute("userId")%>";
+var logintext="";
+console.log(tmp);
+if(tmp==null)
+	logintext="<a href=\"#\">Login</a>";
+else if(tmp!=null)
+	logintext="<a href=\"#\">Logout</a>";
+
+	$(function(){
+	$('#logintext').html(logintext);
+	
+	});
+
+console.log(logintext);
+	
+</script>
 <title>Corklow</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -33,7 +54,7 @@ Licence URI: http://www.os-templates.com/template-terms
         <li><a href="#"><i class="fa fa-lg fa-home"></i></a></li>
         <li><a href="#">About</a></li>
         <li><a href="#">Contact</a></li>
-        <li><a href="#">Login</a></li>
+        <li id="logintext"></li>
         <li><a href="#">Register</a></li>
       </ul>
     </div>
@@ -268,9 +289,5 @@ Licence URI: http://www.os-templates.com/template-terms
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
 <a id="backtotop" href="#top"><i class="fa fa-chevron-up"></i></a>
-<!-- JAVASCRIPTS -->
-<script src="resources/layout/scripts/jquery.min.js"></script>
-<script src="resources/layout/scripts/jquery.backtotop.js"></script>
-<script src="resources/layout/scripts/jquery.mobilemenu.js"></script>
 </body>
 </html>
