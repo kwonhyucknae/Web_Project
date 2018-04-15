@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.javalec.Web_Project.Dao.BoardDao">
+    
+    <select id="selectList" resultType="com.javalec.Web_Project.Dto.BoardDto">
+	    SELECT NUM,TITLE,NAME,HIT,YMD
+	    FROM BOARD
+	</select>
+	
+    <select id="selectTotalcnt" resultType="int">
+	    select COUNT(num)
+		from board
+	</select>
+	
+    
+	<insert id="insertWrite">
+		INSERT INTO BOARD (NUM, TITLE, NAME,CONTENTS,HIT,YMD,FILENAME) VALUES (SEQ_BOARD_NUM.NEXTVAL,#{param1}, #{param2}, #{param3},0,#{param4},#{param5})
+	</insert>
+
+</mapper>

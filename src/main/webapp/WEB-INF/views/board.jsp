@@ -26,6 +26,8 @@ width:600px;}
 width:100px;}
 .th-4{
 width:100px;}
+.th-5{
+width:70px;}
 .button-8{
   width:100px;
   height:50px;
@@ -67,6 +69,13 @@ width:100px;}
 }
 
 </style>
+<script>
+function pageNumber()
+{
+		
+}
+
+</script>
 
 </head>
 <body id="top">
@@ -161,7 +170,7 @@ width:100px;}
     <!-- ################################################################################################ -->
     <div class="content"> 
       <!-- ################################################################################################ -->
-     <h1>Table(s)</h1>
+     <h1>자유게시판</h1>
       <div class="scrollable">
         <table>
           <thead>
@@ -169,40 +178,35 @@ width:100px;}
               <th class="th-1">번호</th>
               <th class="th-2">제목</th>
               <th class="th-3">글쓴이</th>
+              <th class="th-5">조회수</th>
               <th class="th-4">날짜</th>
+              
             </tr>
           </thead>
           <tbody>
+          <c:forEach items="${list}" var="dto">
             <tr>
-              <td><a href="#">Value 1</a></td>
-              <td>Value 2</td>
-              <td>Value 3</td>
-              <td>Value 4</td>
+              <td>${dto.NUM} </td>
+              <td><a href="#">${dto.TITLE}</a></td>
+              <td>${dto.NAME}</td>
+			  <td>${dto.HIT}</td>
+			  <td>${dto.YMD}</td>
             </tr>
-            <tr>
-              <td>Value 5</td>
-              <td>Value 6</td>
-              <td>Value 7</td>
-              <td><a href="#">Value 8</a></td>
-            </tr>
-            <tr>
-              <td>Value 9</td>
-              <td>Value 10</td>
-              <td>Value 11</td>
-              <td>Value 12</td>
-            </tr>
-            <tr>
-              <td>Value 13</td>
-              <td><a href="#">Value 14</a></td>
-              <td>Value 15</td>
-              <td>Value 16</td>
-            </tr>
+            </c:forEach>
+            
           </tbody>
         </table>
      <div class="button-8">
     <div class="eff-8"></div>
-    <a href="#"> Touch me </a>
+    <a href="#"> 글쓰기 </a>
   	</div>
+      </div>
+      <div class="page" align="center">
+      <a href="#">1</a>
+  		<a href="#">2</a>
+  		<a href="#">3</a>
+  		<a href="#">4</a>
+  		<a href="#">5</a>
       </div>
       <div id="comments">
         <h2>Comments</h2>

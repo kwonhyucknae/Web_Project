@@ -164,9 +164,8 @@ width:100px;
     <!-- ################################################################################################ -->
     <div class="content"> 
       <!-- ################################################################################################ -->
-     <h1>Table(s)</h1>
       <div class="scrollable">
-           <form id="frm" action="write">
+           <form id="frm" action="write" enctype="multipart/form-data" method="post">
         	<table class="board_view">
             <colgroup>
                 <col width="15%">
@@ -183,8 +182,11 @@ width:100px;
                         <textarea rows="20" cols="100" title="내용" id="CONTENTS" name="CONTENTS"></textarea>
                     </td>
                 </tr>
+               
             </tbody>
         </table>
+        <input type="file" name="imgFile"><br/>
+             
          <input type="submit" class="btn" value="작성하기">
         <a href="boardlist" class="btn" id="list" >목록으로</a>
     </form>
