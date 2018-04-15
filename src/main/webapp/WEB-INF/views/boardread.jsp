@@ -1,8 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <!--
 Template Name: Corklow
@@ -18,16 +15,12 @@ Licence URI: http://www.os-templates.com/template-terms
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link href="resources/layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
 <style>
-.th-1 {
-width:100px;}
-.th-2{
-width:600px;}
-.th-3{
-width:100px;}
-.th-4{
-width:100px;}
-.th-5{
-width:70px;}
+html,body
+{line-height:1.3;}
+.th-1 {width:100px;}
+.th-2{width:600px;}
+.th-3{width:100px;}
+.th-4{width:100px;}
 .button-8{
   width:100px;
   height:50px;
@@ -66,16 +59,11 @@ width:70px;}
   color:#34495e;
 }
 
-}
+dt{float:left;}
+
+.scrollable input{border:none;}
 
 </style>
-<script>
-function pageNumber()
-{
-		
-}
-
-</script>
 
 </head>
 <body id="top">
@@ -170,155 +158,45 @@ function pageNumber()
     <!-- ################################################################################################ -->
     <div class="content"> 
       <!-- ################################################################################################ -->
-     <h1>자유게시판</h1>
       <div class="scrollable">
-        <table>
-          <thead>
-            <tr>
-              <th class="th-1">번호</th>
-              <th class="th-2">제목</th>
-              <th class="th-3">글쓴이</th>
-              <th class="th-5">조회수</th>
-              <th class="th-4">날짜</th>
-              
-            </tr>
-          </thead>
-          <tbody>
-          <c:forEach items="${list}" var="dto" varStatus="status">
-            <tr>
-              <td>${dto.NUM} </td>
-              <td><a href="#">${dto.TITLE}</a></td>
-              <td>${dto.NAME}</td>
-			  <td>${dto.HIT}</td>
-			  <td>${dto.YMD}</td>
-            </tr>
-            </c:forEach>
+           <form id="frm" action="write" enctype="multipart/form-data" method="post">
+           <div class="board_rd_top">
+           <dl class="br_subject">
+           	<dt>제목</dt>
+          	 <dd>&nbsp;내용</dd>
+           </dl>
+           <dl>
+           <dt>글쓴이</dt>
+           <dd><span>&nbsp;유저네임</span></dd>
+           </dl>
+           </div>
+           
+           
+        	<table class="board_view">
+            <colgroup>
+                <col width="15%">
+                <col width="*"/>
+            </colgroup>
             
-          </tbody>
+            <tbody>
+                <tr>
+                    <th scope="row">제목</th>
+                    <td><input type="text" id="TITLE" name="TITLE" class="wdp_90" readonly></input></td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="view_text">
+                        <textarea rows="20" cols="100" title="내용" id="CONTENTS" name="CONTENTS"></textarea>
+                    </td>
+                </tr>
+               
+            </tbody>
         </table>
-     <div class="button-8">
-    <div class="eff-8"></div>
-    <a href="#"> 글쓰기 </a>
-  	</div>
-      </div>
-      <div class="page" align="center">
-      <%
-      		if((Integer)request.getAttribute("pageNum")> (Integer)request.getAttribute("BLOCK"))
-      		{
-      			%>
-      			<a href="write?pageNum=1">◀◀</a>
-      			<a href="write?pageNum=${startPage}">◀</a>
-      			<% 
-      		}
-      %>
-      
-      <%
-      		for(int i=(Integer)request.getAttribute("startPage");i<=(Integer)request.getAttribute("endPage");i++)
-      		{
-      			if(i==(Integer)request.getAttribute("pageNum"))
-      			{
-      				%><u><b><%=i %></b></u>
-      				<%
-      			}
-      			else
-      			{
-      				%><a href="write?pageNum=<%=i%>"><%=i %></a>
-      				<% 
-      			}
-      		}
-      		if((Integer)request.getAttribute("endPage")<(Integer)request.getAttribute("allPage"))
-      		{
-      			%> 
-      			<a href="write?pageNum=${endPage+1}">▶</a>
-      			<a href="write?pageNum=${allPage}">▶▶</a>
-      			<% 
-      		}
-      		
-      
-      %>
-      
-      </div>
-      <div id="comments">
-        <h2>Comments</h2>
-        <ul>
-          <li>
-            <article>
-              <header>
-                <figure class="avatar"><img src="resources/images/demo/avatar.png" alt=""></figure>
-                <address>
-                By <a href="#">A Name</a>
-                </address>
-                <time datetime="2045-04-06T08:15+00:00">Friday, 6<sup>th</sup> April 2045 @08:15:00</time>
-              </header>
-              <div class="comcont">
-                <p>This is an example of a comment made on a post. You can either edit the comment, delete the comment or reply to the comment. Use this as a place to respond to the post or to share what you are thinking.</p>
-              </div>
-            </article>
-          </li>
-          <li>
-            <article>
-              <header>
-                <figure class="avatar"><img src="resources/images/demo/avatar.png" alt=""></figure>
-                <address>
-                By <a href="#">A Name</a>
-                </address>
-                <time datetime="2045-04-06T08:15+00:00">Friday, 6<sup>th</sup> April 2045 @08:15:00</time>
-              </header>
-              <div class="comcont">
-                <p>This is an example of a comment made on a post. You can either edit the comment, delete the comment or reply to the comment. Use this as a place to respond to the post or to share what you are thinking.</p>
-              </div>
-            </article>
-          </li>
-          <li>
-            <article>
-              <header>
-                <figure class="avatar"><img src="resources/images/demo/avatar.png" alt=""></figure>
-                <address>
-                By <a href="#">A Name</a>
-                </address>
-                <time datetime="2045-04-06T08:15+00:00">Friday, 6<sup>th</sup> April 2045 @08:15:00</time>
-              </header>
-              <div class="comcont">
-                <p>This is an example of a comment made on a post. You can either edit the comment, delete the comment or reply to the comment. Use this as a place to respond to the post or to share what you are thinking.</p>
-              </div>
-            </article>
-          </li>
-        </ul>
-        <h2>Write A Comment</h2>
-        <form action="#" method="post">
-          <div class="one_third first">
-            <label for="name">Name <span>*</span></label>
-            <input type="text" name="name" id="name" value="" size="22" required>
-          </div>
-          <div class="one_third">
-            <label for="email">Mail <span>*</span></label>
-            <input type="email" name="email" id="email" value="" size="22" required>
-          </div>
-          <div class="one_third">
-            <label for="url">Website</label>
-            <input type="url" name="url" id="url" value="" size="22">
-          </div>
-          <div class="block clear">
-            <label for="comment">Your Comment</label>
-            <textarea name="comment" id="comment" cols="25" rows="10"></textarea>
-          </div>
-          <div>
-            <input type="submit" name="submit" value="Submit Form">
-            &nbsp;
-            <input type="reset" name="reset" value="Reset Form">
-          </div>
-        </form>
-      </div>
-      <!-- ################################################################################################ -->
-    </div>
-    <!-- ################################################################################################ -->
-    <!-- / main body -->
-    <div class="clear"></div>
-  </main>
-</div>
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
+        <input type="file" name="imgFile"><br/>
+             
+         <input type="submit" class="btn" value="작성하기">
+        <a href="boardlist" class="btn" id="list" >목록으로</a>
+    </form>
+
 <div class="wrapper row4">
   <footer id="footer" class="hoc clear"> 
     <!-- ################################################################################################ -->

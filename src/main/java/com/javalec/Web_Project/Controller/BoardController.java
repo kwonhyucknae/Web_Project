@@ -120,4 +120,12 @@ public class BoardController {
 	    SimpleDateFormat dayTime = new SimpleDateFormat("yyyyMMdd-HH-mm-ss", Locale.KOREA);
 	    return dayTime.format(new Date(time));
 	}
+	
+	
+	@RequestMapping("/boardRead")
+	public String BoardRead()
+	{
+		return "boardread";
+	}
+	
 }
