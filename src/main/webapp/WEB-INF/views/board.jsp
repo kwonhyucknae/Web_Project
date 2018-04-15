@@ -202,11 +202,41 @@ function pageNumber()
   	</div>
       </div>
       <div class="page" align="center">
-      <a href="#">1</a>
-  		<a href="#">2</a>
-  		<a href="#">3</a>
-  		<a href="#">4</a>
-  		<a href="#">5</a>
+      <%
+      		if((Integer)request.getAttribute("pageNum")> (Integer)request.getAttribute("BLOCK"))
+      		{
+      			%>
+      			<a href="write?pageNum=1">¢¸¢¸</a>
+      			<a href="write?pageNum=${startPage}">¢¸</a>
+      			<% 
+      		}
+      %>
+      
+      <%
+      		for(int i=(Integer)request.getAttribute("startPage");i<=(Integer)request.getAttribute("endPage");i++)
+      		{
+      			if(i==(Integer)request.getAttribute("pageNum"))
+      			{
+      				%><u><b><%=i %></b></u>
+      				<%
+      			}
+      			else
+      			{
+      				%><a href="write?pageNum=<%=i%>"><%=i %></a>
+      				<% 
+      			}
+      		}
+      		if((Integer)request.getAttribute("endPage")<(Integer)request.getAttribute("allPage"))
+      		{
+      			%> 
+      			<a href="write?pageNum=${endPage+1}">¢º</a>
+      			<a href="write?pageNum=${allPage}">¢º¢º</a>
+      			<% 
+      		}
+      		
+      
+      %>
+      
       </div>
       <div id="comments">
         <h2>Comments</h2>

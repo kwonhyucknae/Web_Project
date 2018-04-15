@@ -51,13 +51,17 @@ public class BoardController {
 		{
 			endPage=allPage;
 		}
+		System.out.println("startPage="+startPage);
+		System.out.println("endPage="+endPage);
+		System.out.println("allPage="+allPage);
 		
 		model.addAttribute("startPage",startPage);
 		model.addAttribute("endPage", endPage);
 		model.addAttribute("allPage", allPage);
 		model.addAttribute("BLOCK", BLOCK);
 		
-		model.addAttribute("list",bdo.selectList());
+		model.addAttribute("pageNum", pageNum);
+		model.addAttribute("list",bdo.selectList(start,end));
 		System.out.println(request.getParameter("pageNum"));
 		
 		return "board";

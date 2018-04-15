@@ -6,8 +6,11 @@
 <mapper namespace="com.javalec.Web_Project.Dao.BoardDao">
     
     <select id="selectList" resultType="com.javalec.Web_Project.Dto.BoardDto">
-	    SELECT NUM,TITLE,NAME,HIT,YMD
-	    FROM BOARD
+	    select *
+		from (
+		select ROWNUM R,A.* from(select *
+		from board order by num DESC) A)
+		<![CDATA[where R between #{param1} and #{param2}]]>
 	</select>
 	
     <select id="selectTotalcnt" resultType="int">
