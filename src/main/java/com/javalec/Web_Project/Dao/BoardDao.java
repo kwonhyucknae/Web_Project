@@ -8,5 +8,6 @@ public interface BoardDao {
 
 	public void insertWrite(String TITLE,String NAME,String CONTENTS,String YMD,String FILENAME);
 	public ArrayList<BoardDto> selectList(int start,int end);
+	public String selectFileName(int index);
 	public int selectTotalcnt();
 }

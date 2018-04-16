@@ -58,13 +58,37 @@ html,body
 .button-8:hover a{
   color:#34495e;
 }
-
-dt{float:left;}
-
+dl
+{
+overflow:hidden;
+}
+dt{
+float:left;
+}
+dd{
+float:left;
+disply:inline;
+}
 .scrollable input{border:none;}
 
 </style>
-
+<script type="text/javascript">
+$(document).ready(function()
+		{
+			$("a[name='file']").on("click",function(e)
+					{
+						e.preventDefault();
+						fn_downloadFile($(this));
+					});
+	
+		});
+		function fn_downloadFile(obj)
+		{
+			var idx=obj.parent().find("#")
+			
+		}
+		
+</script>
 </head>
 <body id="top">
 <!-- ################################################################################################ -->
@@ -161,16 +185,18 @@ dt{float:left;}
       <div class="scrollable">
            <form id="frm" action="write" enctype="multipart/form-data" method="post">
            <div class="board_rd_top">
-           <dl class="br_subject">
-           	<dt>제목</dt>
-          	 <dd>&nbsp;내용</dd>
-           </dl>
            <dl>
            <dt>글쓴이</dt>
            <dd><span>&nbsp;유저네임</span></dd>
            </dl>
+           <dl>
+           <dt>날짜</dt>
+           <dd><span>2018</span></dd>
+           <dd>조회수</dd>
+           <dd>0</dd>
+           </dl>
            </div>
-           
+          
            
         	<table class="board_view">
             <colgroup>
@@ -183,6 +209,7 @@ dt{float:left;}
                     <th scope="row">제목</th>
                     <td><input type="text" id="TITLE" name="TITLE" class="wdp_90" readonly></input></td>
                 </tr>
+               
                 <tr>
                     <td colspan="2" class="view_text">
                         <textarea rows="20" cols="100" title="내용" id="CONTENTS" name="CONTENTS"></textarea>
@@ -191,8 +218,10 @@ dt{float:left;}
                
             </tbody>
         </table>
-        <input type="file" name="imgFile"><br/>
-             
+        <input type="hidden" name="imgFile"><br/>
+         <a href="imageDown?index=1" name="file">del01.jpg</a>
+          <br/>
+          <br/>   
          <input type="submit" class="btn" value="작성하기">
         <a href="boardlist" class="btn" id="list" >목록으로</a>
     </form>

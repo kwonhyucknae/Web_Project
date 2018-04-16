@@ -18,6 +18,12 @@
 		from board
 	</select>
 	
+	<select id="selectFileName" resultType="String">
+	    select FILENAME
+		from board
+		<![CDATA[where NUM=#{param1}]]>
+	</select>
+	
     
 	<insert id="insertWrite">
 		INSERT INTO BOARD (NUM, TITLE, NAME,CONTENTS,HIT,YMD,FILENAME) VALUES (SEQ_BOARD_NUM.NEXTVAL,#{param1}, #{param2}, #{param3},0,#{param4},#{param5})

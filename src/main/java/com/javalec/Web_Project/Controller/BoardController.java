@@ -3,13 +3,16 @@ package com.javalec.Web_Project.Controller;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -127,5 +130,25 @@ public class BoardController {
 	{
 		return "boardread";
 	}
+	
+	@RequestMapping("/imageDown")
+	public void downloadFile(HttpServletRequest request,HttpServletResponse response) throws Exception
+	{
+		BoardDao bdo=sqlSession.getMapper(BoardDao.class);
+		
+		String FileName=bdo.selectFileName(Integer.parseInt(request.getParameter("index")));
+		
+		byte fileByte[]=FileUtils.readFileToByteArray(new File("D:/workspace/Web_Project/src/main/webapp/resources/images/"+FileName));
+		
+		response.setContentType("application/octet-stream");
+		response.setContentLength(fileByte.length);
+		response.setHeader("Content-Disposition", "attaachment; fileName=\"" + URLEncoder.encode(FileName,"UTF-8")+"\";");
+		response.setHeader("Content-Transfer-Encoding", "binary");
+		response.getOutputStream().write(fileByte);
+		
+		response.getOutputStream().flush();
+		response.getOutputStream().close();
+	}
+	
 	
 }
