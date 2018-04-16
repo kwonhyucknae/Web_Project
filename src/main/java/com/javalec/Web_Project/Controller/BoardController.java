@@ -162,5 +162,10 @@ public class BoardController {
 		response.getOutputStream().close();
 	}
 	
-	
+	@RequestMapping("/redat")
+	public String reDat(HttpServletRequest request)
+	{
+		
+		return "redirect:boardRead?index="+request.getParameter("index");
+	}
 }

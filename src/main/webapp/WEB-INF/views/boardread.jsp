@@ -210,6 +210,7 @@ disply:inline;
 
           <br/>
           <br/>   
+        </form>
         <div id="comments">
         <h2>Comments</h2>
         <ul>
@@ -229,12 +230,13 @@ disply:inline;
           </li>
         </ul>
         <h2>Write A Comment</h2>
-        <form action="#" method="post">
+        <form action="redat" method="post">
           <div class="block clear">
             <label for="comment">Your Comment</label>
             <textarea name="comment" id="comment" cols="25" rows="10"></textarea>
           </div>
           <div>
+          	<input type="hidden" name="index" value=${readct.NUM}>
             <input type="submit" name="submit" value="Submit Form">
             &nbsp;
             <input type="reset" name="reset" value="Reset Form">
@@ -244,7 +246,7 @@ disply:inline;
           
          <input type="submit" class="btn" value="작성하기">
         <a href="boardlist" class="btn" id="list" >목록으로</a>
-    </form>
+
 
 <div class="wrapper row4">
   <footer id="footer" class="hoc clear"> 
