@@ -72,23 +72,6 @@ disply:inline;
 .scrollable input{border:none;}
 
 </style>
-<script type="text/javascript">
-$(document).ready(function()
-		{
-			$("a[name='file']").on("click",function(e)
-					{
-						e.preventDefault();
-						fn_downloadFile($(this));
-					});
-	
-		});
-		function fn_downloadFile(obj)
-		{
-			var idx=obj.parent().find("#")
-			
-		}
-		
-</script>
 </head>
 <body id="top">
 <!-- ################################################################################################ -->
@@ -187,17 +170,16 @@ $(document).ready(function()
            <div class="board_rd_top">
            <dl>
            <dt>글쓴이</dt>
-           <dd><span>&nbsp;유저네임</span></dd>
+           <dd><span>&nbsp;${readct.NAME}</span></dd>
            </dl>
            <dl>
            <dt>날짜</dt>
-           <dd><span>2018</span></dd>
+           <dd><span>${readct.YMD}</span></dd>
            <dd>조회수</dd>
-           <dd>0</dd>
+           <dd>${readct.HIT}</dd>
            </dl>
            </div>
-          
-           
+
         	<table class="board_view">
             <colgroup>
                 <col width="15%">
@@ -207,21 +189,59 @@ $(document).ready(function()
             <tbody>
                 <tr>
                     <th scope="row">제목</th>
-                    <td><input type="text" id="TITLE" name="TITLE" class="wdp_90" readonly></input></td>
+                    <td><input type="text" id="TITLE" name="TITLE" class="wdp_90" value="${readct.TITLE}" readonly ></input></td>
                 </tr>
                
                 <tr>
                     <td colspan="2" class="view_text">
-                        <textarea rows="20" cols="100" title="내용" id="CONTENTS" name="CONTENTS"></textarea>
+                        <textarea rows="20" cols="100" title="내용" id="CONTENTS" name="CONTENTS" readonly>${readct.CONTENTS }</textarea>
                     </td>
                 </tr>
                
             </tbody>
         </table>
         <input type="hidden" name="imgFile"><br/>
-         <a href="imageDown?index=1" name="file">del01.jpg</a>
+        <%
+        if(!request.getAttribute("filename").equals("None"))
+        {
+        	%><a href="imageDown?index=${readct.NUM}" name="file">${readct.FILENAME }</a><%
+        }
+        %>
+
           <br/>
           <br/>   
+        <div id="comments">
+        <h2>Comments</h2>
+        <ul>
+          <li>
+            <article>
+              <header>
+                <figure class="avatar"><img src="resources/images/demo/avatar.png" alt=""></figure>
+                <address>
+                By <a href="#">A Name</a>
+                </address>
+                <time datetime="2045-04-06T08:15+00:00">Friday, 6<sup>th</sup> April 2045 @08:15:00</time>
+              </header>
+              <div class="comcont">
+                <p>This is an example of a comment made on a post. You can either edit the comment, delete the comment or reply to the comment. Use this as a place to respond to the post or to share what you are thinking.</p>
+              </div>
+            </article>
+          </li>
+        </ul>
+        <h2>Write A Comment</h2>
+        <form action="#" method="post">
+          <div class="block clear">
+            <label for="comment">Your Comment</label>
+            <textarea name="comment" id="comment" cols="25" rows="10"></textarea>
+          </div>
+          <div>
+            <input type="submit" name="submit" value="Submit Form">
+            &nbsp;
+            <input type="reset" name="reset" value="Reset Form">
+          </div>
+        </form>
+      </div>
+          
          <input type="submit" class="btn" value="작성하기">
         <a href="boardlist" class="btn" id="list" >목록으로</a>
     </form>

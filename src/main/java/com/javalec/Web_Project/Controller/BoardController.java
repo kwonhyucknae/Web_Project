@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.javalec.Web_Project.Dao.BoardDao;
+import com.javalec.Web_Project.Dto.BoardDto;
 
 @Controller
 public class BoardController {
@@ -37,7 +38,6 @@ public class BoardController {
 	{
 		int pageNum=1;
 		BoardDao bdo=sqlSession.getMapper(BoardDao.class);
-		
 		if(request.getParameter("pageNum")!=null)
 		{
 			pageNum=Integer.parseInt(request.getParameter("pageNum"));
@@ -73,6 +73,7 @@ public class BoardController {
 	@RequestMapping("/boardwrite")
 	public String boardWrite()
 	{
+		
 		return "boardwrite";
 	}
 	
@@ -126,10 +127,21 @@ public class BoardController {
 	
 	
 	@RequestMapping("/boardRead")
-	public String BoardRead()
+	public String BoardRead(HttpServletRequest request,Model model) throws Exception
 	{
+		BoardDao bdo=sqlSession.getMapper(BoardDao.class);
+		BoardDto dto=bdo.selectRead(Integer.parseInt(request.getParameter("index")));
+		int hit=dto.getHIT();
+		hit++;
+
+		bdo.updateHit(hit, Integer.parseInt(request.getParameter("index")));
+		
+		model.addAttribute("filename", dto.getFILENAME());
+		model.addAttribute("readct",bdo.selectRead(Integer.parseInt(request.getParameter("index"))));
 		return "boardread";
 	}
+	
+	
 	
 	@RequestMapping("/imageDown")
 	public void downloadFile(HttpServletRequest request,HttpServletResponse response) throws Exception

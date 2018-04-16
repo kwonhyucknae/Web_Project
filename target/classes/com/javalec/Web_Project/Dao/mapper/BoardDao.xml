@@ -18,15 +18,22 @@
 		from board
 	</select>
 	
-	<select id="selectFileName" resultType="String">
-	    select FILENAME
+	<select id="selectRead" resultType="com.javalec.Web_Project.Dto.BoardDto">
+	    select *
 		from board
 		<![CDATA[where NUM=#{param1}]]>
 	</select>
-	
+		
     
 	<insert id="insertWrite">
 		INSERT INTO BOARD (NUM, TITLE, NAME,CONTENTS,HIT,YMD,FILENAME) VALUES (SEQ_BOARD_NUM.NEXTVAL,#{param1}, #{param2}, #{param3},0,#{param4},#{param5})
 	</insert>
+	
+	<update id="updateHit">
+		UPDATE board 
+		<![CDATA[SET HIT = #{param1}
+		WHERE NUM = #{param2}]]>
+	</update>
+	
 
 </mapper>
