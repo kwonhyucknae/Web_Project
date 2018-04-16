@@ -136,6 +136,7 @@ public class BoardController {
 
 		bdo.updateHit(hit, Integer.parseInt(request.getParameter("index")));
 		
+		
 		model.addAttribute("filename", dto.getFILENAME());
 		model.addAttribute("readct",bdo.selectRead(Integer.parseInt(request.getParameter("index"))));
 		return "boardread";
@@ -162,6 +163,7 @@ public class BoardController {
 		response.getOutputStream().close();
 	}
 	
+	
 	@RequestMapping("/redat")
 	public String reDat(HttpServletRequest request,HttpSession session)
 	{
@@ -170,7 +172,7 @@ public class BoardController {
 		System.out.println("2"+(String)session.getAttribute("userId"));
 		System.out.println("3"+Integer.parseInt(request.getParameter("index")));
 		
-		bdo.insertRedat((String)session.getAttribute("userId"), request.getParameter("comment"), Integer.parseInt(request.getParameter("index")));
+		bdo.insertRedat((String)session.getAttribute("userId"), request.getParameter("comment"), Integer.parseInt(request.getParameter("index")),getCurrentDayTime());
 		
 		
 		return "redirect:boardRead?index="+request.getParameter("index");

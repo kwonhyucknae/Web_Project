@@ -30,7 +30,7 @@
 	</insert>
 	
 	<insert id="insertRedat">
-		insert into BOARDCOMMENT (USERID, CONTENTS, BOARDNUM) values (#{param1}, #{param2}, #{param3})
+		insert into BOARDCOMMENT (USERID, CONTENTS, BOARDNUM,YDM) values (#{param1}, #{param2}, #{param3}, #{param4})
 	</insert>
 	
 	<update id="updateHit">

@@ -6,7 +6,7 @@ import com.javalec.Web_Project.Dto.BoardDto;
 
 public interface BoardDao {
 
-	public void insertRedat(String USERID,String CONTENTS,int BOARDNUM);
+	public void insertRedat(String USERID,String CONTENTS,int BOARDNUM,String YDM);
 	public void insertWrite(String TITLE,String NAME,String CONTENTS,String YMD,String FILENAME);
 	public ArrayList<BoardDto> selectList(int start,int end);
 	public String selectFileName(int index);
