@@ -12,6 +12,7 @@ public interface BoardDao {
 	public String selectFileName(int index);
 	public int selectTotalcnt();
 	public BoardDto selectRead(int index);
+	public ArrayList<BoardDto> selectRedat(int index);
 	public void updateHit(int HIT,int index);
 	
 }

@@ -23,6 +23,13 @@
 		from board
 		<![CDATA[where NUM=#{param1}]]>
 	</select>
+	
+	<select id="selectRedat" resultType="com.javalec.Web_Project.Dto.BoardReDto">
+	    select *
+		from boardcomment
+		<![CDATA[where BOARDNUM=#{param1}]]>
+	</select>
+	
 		
     
 	<insert id="insertWrite">
@@ -32,6 +39,7 @@
 	<insert id="insertRedat">
 		insert into BOARDCOMMENT (USERID, CONTENTS, BOARDNUM,YDM) values (#{param1}, #{param2}, #{param3}, #{param4})
 	</insert>
+
 	
 	<update id="updateHit">
 		UPDATE board 

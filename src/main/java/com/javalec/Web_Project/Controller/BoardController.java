@@ -137,8 +137,10 @@ public class BoardController {
 		bdo.updateHit(hit, Integer.parseInt(request.getParameter("index")));
 		
 		
+		model.addAttribute("redat", bdo.selectRedat(Integer.parseInt(request.getParameter("index"))));
 		model.addAttribute("filename", dto.getFILENAME());
 		model.addAttribute("readct",bdo.selectRead(Integer.parseInt(request.getParameter("index"))));
+		
 		return "boardread";
 	}
 	

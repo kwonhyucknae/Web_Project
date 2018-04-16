@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
+     
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <!--
 Template Name: Corklow
@@ -210,20 +212,22 @@ disply:inline;
         <div id="comments">
         <h2>Comments</h2>
         <ul>
+        	<c:forEach items="${redat}" var="rdt">
           <li>
             <article>
               <header>
                 <figure class="avatar"><img src="resources/images/demo/avatar.png" alt=""></figure>
                 <address>
-                By <a href="#">A Name</a>
+                By <a href="#">${rdt.USERID} </a>
                 </address>
-                <time datetime="2045-04-06T08:15+00:00">Friday, 6<sup>th</sup> April 2045 @08:15:00</time>
+                <time datetime="2045-04-06T08:15+00:00">Friday, 6<sup>th</sup>${rdt.YDM }</time>
               </header>
               <div class="comcont">
-                <p>This is an example of a comment made on a post. You can either edit the comment, delete the comment or reply to the comment. Use this as a place to respond to the post or to share what you are thinking.</p>
+                <p>${rdt.CONTENTS }</p>
               </div>
             </article>
           </li>
+          </c:forEach>
         </ul>
         <h2>Write A Comment</h2>
         <form action="redat" method="post">
