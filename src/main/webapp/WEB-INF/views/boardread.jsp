@@ -59,12 +59,8 @@ html,body
   color:#34495e;
 }
 dl
-{
-overflow:hidden;
-}
-dt{
-float:left;
-}
+{overflow:hidden;}
+dt{float:left;}
 dd{
 float:left;
 disply:inline;

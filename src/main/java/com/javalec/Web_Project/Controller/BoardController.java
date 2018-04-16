@@ -163,8 +163,15 @@ public class BoardController {
 	}
 	
 	@RequestMapping("/redat")
-	public String reDat(HttpServletRequest request)
+	public String reDat(HttpServletRequest request,HttpSession session)
 	{
+		BoardDao bdo=sqlSession.getMapper(BoardDao.class);
+		System.out.println("1"+request.getParameter("comment"));
+		System.out.println("2"+(String)session.getAttribute("userId"));
+		System.out.println("3"+Integer.parseInt(request.getParameter("index")));
+		
+		bdo.insertRedat((String)session.getAttribute("userId"), request.getParameter("comment"), Integer.parseInt(request.getParameter("index")));
+		
 		
 		return "redirect:boardRead?index="+request.getParameter("index");
 	}

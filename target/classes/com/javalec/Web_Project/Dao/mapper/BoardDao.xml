@@ -29,6 +29,10 @@
 		INSERT INTO BOARD (NUM, TITLE, NAME,CONTENTS,HIT,YMD,FILENAME) VALUES (SEQ_BOARD_NUM.NEXTVAL,#{param1}, #{param2}, #{param3},0,#{param4},#{param5})
 	</insert>
 	
+	<insert id="insertRedat">
+		insert into BOARDCOMMENT (USERID, CONTENTS, BOARDNUM) values (#{param1}, #{param2}, #{param3})
+	</insert>
+	
 	<update id="updateHit">
 		UPDATE board 
 		<![CDATA[SET HIT = #{param1}
