@@ -117,8 +117,9 @@ public class BoardController {
 	    bdo.insertWrite(title,(String)session.getAttribute("userId"), contents, getCurrentDayTime(), rename);
 		
 	    System.out.println(rename);
-		return "board";
+		return "redirect:boardlist";
 	}
+	
 	public String getCurrentDayTime(){
 	    long time = System.currentTimeMillis();
 	    SimpleDateFormat dayTime = new SimpleDateFormat("yyyyMMdd-HH-mm-ss", Locale.KOREA);
@@ -136,7 +137,7 @@ public class BoardController {
 
 		bdo.updateHit(hit, Integer.parseInt(request.getParameter("index")));
 		
-		
+		model.addAttribute("writer", dto.getNAME());
 		model.addAttribute("redat", bdo.selectRedat(Integer.parseInt(request.getParameter("index"))));
 		model.addAttribute("filename", dto.getFILENAME());
 		model.addAttribute("readct",bdo.selectRead(Integer.parseInt(request.getParameter("index"))));
@@ -179,4 +180,99 @@ public class BoardController {
 		
 		return "redirect:boardRead?index="+request.getParameter("index");
 	}
+	
+	@RequestMapping("/modify")
+	public String Modify(HttpServletRequest request,Model model)
+	{
+		BoardDao bdo=sqlSession.getMapper(BoardDao.class);
+		BoardDto bto=bdo.selectRead(Integer.parseInt(request.getParameter("index")));
+		
+		model.addAttribute("filename", bto.getFILENAME());
+		model.addAttribute("readct",bdo.selectRead(Integer.parseInt(request.getParameter("index"))));
+		
+		
+		return "boardmodify";
+	}
+	
+	
+	@RequestMapping("/modifywrite")
+	public String ModifyWrite(HttpServletRequest request,HttpSession session,@RequestParam("imgFile") MultipartFile imgFile,Model model)
+	{
+		BoardDao bdo=sqlSession.getMapper(BoardDao.class);
+		String title=request.getParameter("TITLE");
+		String contents=request.getParameter("CONTENTS");
+		
+		String savePath = "D:/workspace/Web_Project/src/main/webapp/resources/images"; // 파일이 저장될 프로젝트 안의 폴더 경로
+		String rename="",fullPath="";
+		
+		
+		if(imgFile.isEmpty())
+	    {
+			if(!request.getParameter("imgname").equals("None"))
+			{
+				rename=request.getParameter("imgname");
+			}
+			else
+			{
+		    	rename="None";
+			}
+	    }
+	    else
+	    {
+		String originalFilename = imgFile.getOriginalFilename(); // fileName.jpg
+	    String onlyFileName = originalFilename.substring(0, originalFilename.indexOf(".")); // fileName
+	    String extension = originalFilename.substring(originalFilename.indexOf(".")); // .jpg
+	     
+	    rename = onlyFileName+extension;// + "_" + getCurrentDayTime() + extension; // fileName_20150721-14-07-50.jpg
+	    fullPath = savePath + "\\" + rename;
+	    
+	    File file=new File("D:/workspace/Web_Project/src/main/webapp/resources/images/"+rename);
+    	if(file.exists())
+    	{}
+    	else
+    	{
+    		try {
+	            byte[] bytes = imgFile.getBytes();
+	            BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File(fullPath)));
+	            stream.write(bytes);
+	            stream.close();
+	            model.addAttribute("resultMsg", "파일을 업로드 성공!");
+	        } catch (Exception e) {
+	            model.addAttribute("resultMsg", "파일을 업로드하는 데에 실패했습니다.");
+	            e.printStackTrace();
+	        }
+    	}
+        
+	    }
+		
+	    
+		bdo.updatewrite(request.getParameter("TITLE"), request.getParameter("CONTENTS"), rename, Integer.parseInt(request.getParameter("index")));
+		
+		return "redirect:boardlist";
+	}
+	
+	
+	
+	@RequestMapping("/deleteFile")
+	public String deleteFile(HttpServletRequest request,Model model)
+	{
+		BoardDao bdo=sqlSession.getMapper(BoardDao.class);
+		BoardDto bto=bdo.selectRead(Integer.parseInt(request.getParameter("index")));
+		
+		
+		File file=new File("D:/workspace/Web_Project/src/main/webapp/resources/images/"+bto.getFILENAME());
+		file.delete();
+		
+		bdo.updatedeleteFile(Integer.parseInt(request.getParameter("index")));
+		
+		
+		model.addAttribute("filename", bto.getFILENAME());
+		model.addAttribute("readct",bdo.selectRead(Integer.parseInt(request.getParameter("index"))));
+		
+		
+		
+		return "redirect:modify?index="+request.getParameter("index");
+		
+	}
+	
 }

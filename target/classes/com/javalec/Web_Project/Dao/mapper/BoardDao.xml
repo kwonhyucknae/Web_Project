@@ -47,5 +47,20 @@
 		WHERE NUM = #{param2}]]>
 	</update>
 	
+	
+	<update id="updatedeleteFile">
+		update board
+		set FILENAME='None'
+	    where NUM=#{param1}
+	</update>
+	
 
+	<update id="updatewrite">
+		    update board
+		    set TITLE=#{param1},
+		    	CONTENTS=#{param2},
+		    	FILENAME=#{param3}
+		    where NUM=#{param4}
+	</update>
+	
 </mapper>

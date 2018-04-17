@@ -206,8 +206,8 @@ function pageNumber()
       		if((Integer)request.getAttribute("pageNum")> (Integer)request.getAttribute("BLOCK"))
       		{
       			%>
-      			<a href="write?pageNum=1">¢¸¢¸</a>
-      			<a href="write?pageNum=${startPage}">¢¸</a>
+      			<a href="boardlist?pageNum=1">¢¸¢¸</a>
+      			<a href="boardlist?pageNum=${startPage}">¢¸</a>
       			<% 
       		}
       %>
@@ -222,15 +222,15 @@ function pageNumber()
       			}
       			else
       			{
-      				%><a href="write?pageNum=<%=i%>"><%=i %></a>
+      				%><a href="boardlist?pageNum=<%=i%>"><%=i %></a>
       				<% 
       			}
       		}
       		if((Integer)request.getAttribute("endPage")<(Integer)request.getAttribute("allPage"))
       		{
       			%> 
-      			<a href="write?pageNum=${endPage+1}">¢º</a>
-      			<a href="write?pageNum=${allPage}">¢º¢º</a>
+      			<a href="boardlist?pageNum=${endPage+1}">¢º</a>
+      			<a href="boardlist?pageNum=${allPage}">¢º¢º</a>
       			<% 
       		}
       		

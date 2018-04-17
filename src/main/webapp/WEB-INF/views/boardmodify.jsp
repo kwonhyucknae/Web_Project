@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
-     
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <!--
 Template Name: Corklow
@@ -18,16 +16,25 @@ Licence URI: http://www.os-templates.com/template-terms
 <link href="resources/layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
 <style>
 html,body
-{line-height:1.3;}
-.th-1 {width:100px;}
-.th-2{width:600px;}
-.th-3{width:100px;}
-.th-4{width:100px;}
+{line-height:1.3;
+}
+.th-1 {
+width:100px;
+}
+.th-2{
+width:600px;
+}
+.th-3{
+width:100px;
+}
+.th-4{
+width:100px;
+}
 .button-8{
-  width:100px;
+  width:70px;
   height:50px;
   border:2px solid #34495e;
-  float:left;
+  
   text-align:center;
   cursor:pointer;
   position:relative;
@@ -60,20 +67,10 @@ html,body
 .button-8:hover a{
   color:#34495e;
 }
-dl
-{overflow:hidden;}
-dt{float:left;}
-dd{
-float:left;
-disply:inline;
-}
-.scrollable input{border:none;}
+
 
 </style>
-<script>
 
-
-</script>
 </head>
 <body id="top">
 <!-- ################################################################################################ -->
@@ -168,96 +165,63 @@ disply:inline;
     <div class="content"> 
       <!-- ################################################################################################ -->
       <div class="scrollable">
-           <form id="frm" action="write" enctype="multipart/form-data" method="post">
-           <div class="board_rd_top">
-           <dl>
-           <dt>글쓴이</dt>
-           <dd><span>&nbsp;${readct.NAME}</span></dd>
-           </dl>
-           <dl>
-           <dt>날짜</dt>
-           <dd><span>${readct.YMD}</span></dd>
-           <dd>조회수</dd>
-           <dd>${readct.HIT}</dd>
-           </dl>
-           </div>
-
+           <form id="frm" action="modifywrite" enctype="multipart/form-data" method="post">
         	<table class="board_view">
             <colgroup>
                 <col width="15%">
                 <col width="*"/>
             </colgroup>
-            
+            <caption>게시글 작성</caption>
             <tbody>
                 <tr>
                     <th scope="row">제목</th>
-                    <td><input type="text" id="TITLE" name="TITLE" class="wdp_90" value="${readct.TITLE}" readonly ></input></td>
+                    <td><input type="text" id="TITLE" name="TITLE" class="wdp_90" value=${readct.TITLE}></input></td>
                 </tr>
-               
                 <tr>
                     <td colspan="2" class="view_text">
-                        <textarea rows="20" cols="100" title="내용" id="CONTENTS" name="CONTENTS" readonly>${readct.CONTENTS }</textarea>
+                        <textarea rows="20" cols="100" title="내용" id="CONTENTS" name="CONTENTS">${readct.CONTENTS }</textarea>
                     </td>
                 </tr>
                
             </tbody>
         </table>
-        <input type="hidden" name="imgFile"><br/>
-        <%
+        <%if(request.getAttribute("filename").equals("None"))
+        	{%>
+        	<input type="file" name="imgFile">
+            <%
+        	}
+        else if(!request.getAttribute("filename").equals("None"))
+        {
+        	%>
+        	
+        	<a href="imageDown?index=${readct.NUM}" name="file">${readct.FILENAME }</a>
+        	<input type="file" name="imgFile">
+            
+        	<% 
+        }
+        
+        
         if(!request.getAttribute("filename").equals("None"))
         {
-        	%><a href="imageDown?index=${readct.NUM}" name="file">${readct.FILENAME }</a><%
+        	%>
+        	<div class="button-8">
+        	<div class="eff-8"></div>
+        	 <a href="deleteFile?index=${readct.NUM}">삭제</a>
+      		</div>
+          </div>
+          <% 
         }
-        %>
+        %>	
         
-
-          <br/>
-          <br/>   
-        </form>
-        <div id="comments">
-        <h2>Comments</h2>
-        <ul>
-        	<c:forEach items="${redat}" var="rdt">
-          <li>
-            <article>
-              <header>
-                <figure class="avatar"><img src="resources/images/demo/avatar.png" alt=""></figure>
-                <address>
-                By <a href="#">${rdt.USERID} </a>
-                </address>
-                <time datetime="2045-04-06T08:15+00:00">Friday, 6<sup>th</sup>${rdt.YDM }</time>
-              </header>
-              <div class="comcont">
-                <p>${rdt.CONTENTS }</p>
-              </div>
-            </article>
-          </li>
-          </c:forEach>
-        </ul>
-        <h2>Write A Comment</h2>
-        <form action="redat" method="post">
-          <div class="block clear">
-            <label for="comment">Your Comment</label>
-            <textarea name="comment" id="comment" cols="25" rows="10"></textarea>
-          </div>
-          <div>
-          	<input type="hidden" name="index" value=${readct.NUM}>
-            <input type="submit" name="submit" value="Submit Form">
-            &nbsp;
-            <input type="reset" name="reset" value="Reset Form">
-          </div>
-        </form>
-      </div>
-      
-      <form action="modify">
-      	 <input type="hidden" name="index" value=${readct.NUM}>
-          <% if(session.getAttribute("userId").equals(request.getAttribute("writer")))
-          {%>
-         <input type="submit" class="btn" value="수정하기">
-          <% }%>
-          
+        	
+       
+        <br/>
+        <br/>
+        <input type="hidden" name="imgname" value=${readct.FILENAME}>
+        <input type="hidden" name="index" value=${readct.NUM}>
+         <input type="submit" class="btn" value="작성하기">
         <a href="boardlist" class="btn" id="list" >목록으로</a>
-	  </form>
+    </form>
 
 <div class="wrapper row4">
   <footer id="footer" class="hoc clear"> 

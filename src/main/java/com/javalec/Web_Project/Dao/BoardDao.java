@@ -14,5 +14,7 @@ public interface BoardDao {
 	public BoardDto selectRead(int index);
 	public ArrayList<BoardDto> selectRedat(int index);
 	public void updateHit(int HIT,int index);
+	public void updatedeleteFile(int index);
+	public void updatewrite(String TITLE,String CONTENTS,String FILENAME,int index);
 	
 }
