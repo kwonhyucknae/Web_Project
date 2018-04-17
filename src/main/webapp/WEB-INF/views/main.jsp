@@ -4,227 +4,290 @@
     
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <!--
-	Landed by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+Template Name: Corklow
+Author: <a href="http://www.os-templates.com/">OS Templates</a>
+Author URI: http://www.os-templates.com/
+Licence: Free to use under our free template licence terms
+Licence URI: http://www.os-templates.com/template-terms
 -->
 <html>
-	<head>
-		<title>Landed by HTML5 UP</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
-		<link rel="stylesheet" href="resources/assets/css/main.css" />
-		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
-		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
-		<style>
-		
-		.content{background-image:url("resources/images/pic01.jpg");
-		background-size:cover;
-		}
-		
-		</style>
-	</head>
-	<body class="landing">
-		<div id="page-wrapper">
+<head>
+<!-- JAVASCRIPTS -->
+<script src="resources/layout/scripts/jquery.min.js"></script>
+<script src="resources/layout/scripts/jquery.backtotop.js"></script>
+<script src="resources/layout/scripts/jquery.mobilemenu.js"></script>
+<script type="text/javascript">
+var tmp="<%= request.getSession().getAttribute("userId")%>";
+var logintext="";
+console.log(tmp);
+if(tmp==null)
+	logintext="<a href=\"login\">Login</a>";
+else if(tmp!=null)
+	logintext="<a href=\"logout\">Logout</a>";
 
-			<!-- Header -->
-				<header id="header">
-					<h1 id="logo"><a href="index.html">Landed</a></h1>
-					<nav id="nav">
-						<ul>
-							<li><a href="index.html">Home</a></li>
-							<li>
-								<a href="#">Layouts</a>
-								<ul>
-									<li><a href="left-sidebar.html">Left Sidebar</a></li>
-									<li><a href="right-sidebar.html">Right Sidebar</a></li>
-									<li><a href="no-sidebar.html">No Sidebar</a></li>
-									<li>
-										<a href="#">Submenu</a>
-										<ul>
-											<li><a href="#">Option 1</a></li>
-											<li><a href="#">Option 2</a></li>
-											<li><a href="#">Option 3</a></li>
-											<li><a href="#">Option 4</a></li>
-										</ul>
-									</li>
-								</ul>
-							</li>
-							<li><a href="elements.html">Elements</a></li>
-							<li><a href="#" class="button special">Sign Up</a></li>
-						</ul>
-					</nav>
-				</header>
+	$(function(){
+	$('#logintext').html(logintext);
+	
+	});
 
-			<!-- Banner -->
-				<section id="banner">
-					<div class="content">
-						<header>
-							<h2>The future has landed</h2>
-							<p>And there are no hoverboards or flying cars.<br />
-							Just apps. Lots of mother flipping apps.</p>
-						</header>
-						<span class="image"><img src="resources/images/pic01.jpg" alt="" /></span>
-					</div>
-					<a href="#one" class="goto-next scrolly">Next</a>
-				</section>
-
-			<!-- One -->
-				<section id="one" class="spotlight style1 bottom">
-					<span class="image fit main"><img src="resources/images/pic02.jpg" alt="" /></span>
-					<div class="content">
-						<div class="container">
-							<div class="row">
-								<div class="4u 12u$(medium)">
-									<header>
-										<h2>Odio faucibus ipsum integer consequat</h2>
-										<p>Nascetur eu nibh vestibulum amet gravida nascetur praesent</p>
-									</header>
-								</div>
-								<div class="4u 12u$(medium)">
-									<p>Feugiat accumsan lorem eu ac lorem amet sed accumsan donec.
-									Blandit orci porttitor semper. Arcu phasellus tortor enim mi
-									nisi praesent dolor adipiscing. Integer mi sed nascetur cep aliquet
-									augue varius tempus lobortis porttitor accumsan consequat
-									adipiscing lorem dolor.</p>
-								</div>
-								<div class="4u$ 12u$(medium)">
-									<p>Morbi enim nascetur et placerat lorem sed iaculis neque ante
-									adipiscing adipiscing metus massa. Blandit orci porttitor semper.
-									Arcu phasellus tortor enim mi mi nisi praesent adipiscing. Integer
-									mi sed nascetur cep aliquet augue varius tempus. Feugiat lorem
-									ipsum dolor nullam.</p>
-								</div>
-							</div>
-						</div>
-					</div>
-					<a href="#two" class="goto-next scrolly">Next</a>
-				</section>
-
-			<!-- Two -->
-				<section id="two" class="spotlight style2 right">
-					<span class="image fit main"><img src="resources/images/pic03.jpg" alt="" /></span>
-					<div class="content">
-						<header>
-							<h2>Interdum amet non magna accumsan</h2>
-							<p>Nunc commodo accumsan eget id nisi eu col volutpat magna</p>
-						</header>
-						<p>Feugiat accumsan lorem eu ac lorem amet ac arcu phasellus tortor enim mi mi nisi praesent adipiscing. Integer mi sed nascetur cep aliquet augue varius tempus lobortis porttitor lorem et accumsan consequat adipiscing lorem.</p>
-						<ul class="actions">
-							<li><a href="#" class="button">Learn More</a></li>
-						</ul>
-					</div>
-					<a href="#three" class="goto-next scrolly">Next</a>
-				</section>
-
-			<!-- Three -->
-				<section id="three" class="spotlight style3 left">
-					<span class="image fit main bottom"><img src="resources/images/pic04.jpg" alt="" /></span>
-					<div class="content">
-						<header>
-							<h2>Interdum felis blandit praesent sed augue</h2>
-							<p>Accumsan integer ultricies aliquam vel massa sapien phasellus</p>
-						</header>
-						<p>Feugiat accumsan lorem eu ac lorem amet ac arcu phasellus tortor enim mi mi nisi praesent adipiscing. Integer mi sed nascetur cep aliquet augue varius tempus lobortis porttitor lorem et accumsan consequat adipiscing lorem.</p>
-						<ul class="actions">
-							<li><a href="#" class="button">Learn More</a></li>
-						</ul>
-					</div>
-					<a href="#four" class="goto-next scrolly">Next</a>
-				</section>
-
-			<!-- Four -->
-				<section id="four" class="wrapper style1 special fade-up">
-					<div class="container">
-						<header class="major">
-							<h2>Accumsan sed tempus adipiscing blandit</h2>
-							<p>Iaculis ac volutpat vis non enim gravida nisi faucibus posuere arcu consequat</p>
-						</header>
-						<div class="box alt">
-							<div class="row uniform">
-								<section class="4u 6u(medium) 12u$(xsmall)">
-									<span class="icon alt major fa-area-chart"></span>
-									<h3>Ipsum sed commodo</h3>
-									<p>Feugiat accumsan lorem eu ac lorem amet accumsan donec. Blandit orci porttitor.</p>
-								</section>
-								<section class="4u 6u$(medium) 12u$(xsmall)">
-									<span class="icon alt major fa-comment"></span>
-									<h3>Eleifend lorem ornare</h3>
-									<p>Feugiat accumsan lorem eu ac lorem amet accumsan donec. Blandit orci porttitor.</p>
-								</section>
-								<section class="4u$ 6u(medium) 12u$(xsmall)">
-									<span class="icon alt major fa-flask"></span>
-									<h3>Cubilia cep lobortis</h3>
-									<p>Feugiat accumsan lorem eu ac lorem amet accumsan donec. Blandit orci porttitor.</p>
-								</section>
-								<section class="4u 6u$(medium) 12u$(xsmall)">
-									<span class="icon alt major fa-paper-plane"></span>
-									<h3>Non semper interdum</h3>
-									<p>Feugiat accumsan lorem eu ac lorem amet accumsan donec. Blandit orci porttitor.</p>
-								</section>
-								<section class="4u 6u(medium) 12u$(xsmall)">
-									<span class="icon alt major fa-file"></span>
-									<h3>Odio laoreet accumsan</h3>
-									<p>Feugiat accumsan lorem eu ac lorem amet accumsan donec. Blandit orci porttitor.</p>
-								</section>
-								<section class="4u$ 6u$(medium) 12u$(xsmall)">
-									<span class="icon alt major fa-lock"></span>
-									<h3>Massa arcu accumsan</h3>
-									<p>Feugiat accumsan lorem eu ac lorem amet accumsan donec. Blandit orci porttitor.</p>
-								</section>
-							</div>
-						</div>
-						<footer class="major">
-							<ul class="actions">
-								<li><a href="#" class="button">Magna sed feugiat</a></li>
-							</ul>
-						</footer>
-					</div>
-				</section>
-
-			<!-- Five -->
-				<section id="five" class="wrapper style2 special fade">
-					<div class="container">
-						<header>
-							<h2>Magna faucibus lorem diam</h2>
-							<p>Ante metus praesent faucibus ante integer id accumsan eleifend</p>
-						</header>
-						<form method="post" action="#" class="container 50%">
-							<div class="row uniform 50%">
-								<div class="8u 12u$(xsmall)"><input type="email" name="email" id="email" placeholder="Your Email Address" /></div>
-								<div class="4u$ 12u$(xsmall)"><input type="submit" value="Get Started" class="fit special" /></div>
-							</div>
-						</form>
-					</div>
-				</section>
-
-			<!-- Footer -->
-				<footer id="footer">
-					<ul class="icons">
-						<li><a href="#" class="icon alt fa-twitter"><span class="label">Twitter</span></a></li>
-						<li><a href="#" class="icon alt fa-facebook"><span class="label">Facebook</span></a></li>
-						<li><a href="#" class="icon alt fa-linkedin"><span class="label">LinkedIn</span></a></li>
-						<li><a href="#" class="icon alt fa-instagram"><span class="label">Instagram</span></a></li>
-						<li><a href="#" class="icon alt fa-github"><span class="label">GitHub</span></a></li>
-						<li><a href="#" class="icon alt fa-envelope"><span class="label">Email</span></a></li>
-					</ul>
-					<ul class="copyright">
-						<li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-					</ul>
-				</footer>
-
-		</div>
-
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/jquery.dropotron.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/skel.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-			<script src="assets/js/main.js"></script>
-
-	</body>
+console.log(logintext);
+	
+</script>
+<title>Corklow</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link href="resources/layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
+</head>
+<body id="top">
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper row0">
+  <div id="topbar" class="hoc clear"> 
+    <!-- ################################################################################################ -->
+    <div class="fl_left">
+      <ul class="nospace">
+        <li><i class="fa fa-phone"></i> +00 (123) 456 7890</li>
+        <li><i class="fa fa-envelope-o"></i> info@domain.com</li>
+      </ul>
+    </div>
+    <div class="fl_right">
+      <ul class="nospace">
+        <li><a href="#"><i class="fa fa-lg fa-home"></i></a></li>
+        <li id="logintext"></li>
+        <li><a href="#">Register</a></li>
+      </ul>
+    </div>
+    <!-- ################################################################################################ -->
+  </div>
+</div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper row1">
+  <header id="header" class="hoc clear"> 
+    <!-- ################################################################################################ -->
+    <div id="logo" class="fl_left">
+      <h1><a href="index.html">오늘 뭐먹지?</a></h1>
+      <p>매장을 손쉽게 찾아보세요</p>
+    </div>
+    <!-- ################################################################################################ -->
+    <nav id="mainav" class="fl_right">
+      <ul class="clear">
+        <li class="active"><a href="Maintest">Home</a></li>
+        <li><a class="drop" href="#">Pages</a>
+          <ul>
+            <li><a href="resources/pages/gallery.html">Gallery</a></li>
+            <li><a href="resources/pages/full-width.html">Full Width</a></li>
+            <li><a href="resources/pages/sidebar-left.html">Sidebar Left</a></li>
+            <li><a href="Maptest">Sidebar Right</a></li>
+            <li><a href="resources/pages/basic-grid.html">Basic Grid</a></li>
+          </ul>
+        </li>
+        <li><a class="drop" href="#">Dropdown</a>
+          <ul>
+            <li><a href="#">Level 2</a></li>
+            <li><a class="drop" href="#">Level 2 + Drop</a>
+              <ul>
+                <li><a href="#">Level 3</a></li>
+                <li><a href="#">Level 3</a></li>
+                <li><a href="#">Level 3</a></li>
+              </ul>
+            </li>
+            <li><a href="#">Level 2</a></li>
+          </ul>
+        </li>
+        <li><a href="#">매장찾기</a></li>
+        <li><a href="#">게시판</a></li>
+      </ul>
+    </nav>
+    <!-- ################################################################################################ -->
+  </header>
+</div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper bgded overlay" style="background-image:url('resources/images/del01.jpg');">
+  <div id="pageintro" class="hoc clear"> 
+    <!-- ################################################################################################ -->
+    <article>
+      <p class="heading">내 주변에 맛집을 찾아보세요!</p>
+      <h2 class="heading"><span class="block">오늘</span> 뭐먹지?</h2>
+      <footer><a href="#">Malesuada fames &raquo;</a></footer>
+    </article>
+    <!-- ################################################################################################ -->
+  </div>
+</div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper row3">
+  <div id="services" class="hoc clear"> 
+    <!-- ################################################################################################ -->
+    <div class="table">
+      <div class="table-row"> 
+        <!-- ################################################################################################ -->
+        <div class="table-cell">
+          <article><a href="#"><i class="fa fa-key"></i></a>
+            <h6 class="heading">Primis in faucibus</h6>
+            <p>Massa finibus at integer dictum sem arcu eu venenatis purus porta eu aliquam&hellip;</p>
+            <footer><a href="#">Read More &raquo;</a></footer>
+          </article>
+        </div>
+        <div class="table-cell">
+          <article><a href="#"><i class="fa fa-lastfm"></i></a>
+            <h6 class="heading">Etiam ac porttitor</h6>
+            <p>In venenatis ipsum ac tincidunt dolor duis accumsan massa velit eget luctus&hellip;</p>
+            <footer><a href="#">Read More &raquo;</a></footer>
+          </article>
+        </div>
+        <div class="table-cell">
+          <article><a href="#"><i class="fa fa-angellist"></i></a>
+            <h6 class="heading">Metus et suscipit</h6>
+            <p>Lorem facilisis vel aliquam semper vestibulum iaculis etiam vel convallis porta&hellip;</p>
+            <footer><a href="#">Read More &raquo;</a></footer>
+          </article>
+        </div>
+        <!-- ################################################################################################ -->
+      </div>
+    </div>
+    <!-- ################################################################################################ -->
+  </div>
+</div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper row3">
+  <main class="hoc container clear"> 
+    <!-- main body -->
+    <!-- ################################################################################################ -->
+    <div class="center btmspace-80">
+      <h3 class="heading">Nisl massa aliquet ac sagittis</h3>
+      <p class="nospace">Pulvinar egestas sed nibh mauris commodo sed dolor id viverra nullam ornare augue at.</p>
+    </div>
+    <ul class="nospace group cta">
+      <li class="one_third first">
+        <article><a href="#"><i class="fa fa-line-chart"></i></a>
+          <h6 class="heading">At enim vehicula</h6>
+          <p>Turpis tristique ac tincidunt et placerat rutrum nisi proin quis magna integer&hellip;</p>
+          <footer><a href="#">Read More &raquo;</a></footer>
+        </article>
+      </li>
+      <li class="one_third">
+        <article><a href="#"><i class="fa fa-audio-description"></i></a>
+          <h6 class="heading">Vehicula eu lacinia</h6>
+          <p>Purus nulla sed sodales enim nunc semper quam leo donec eu pharetra turpis&hellip;</p>
+          <footer><a href="#">Read More &raquo;</a></footer>
+        </article>
+      </li>
+      <li class="one_third">
+        <article><a href="#"><i class="fa fa-balance-scale"></i></a>
+          <h6 class="heading">Augue vivamus sem</h6>
+          <p>Id dapibus tellus ut iaculis tempus mi at ornare dui vestibulum vitae&hellip;</p>
+          <footer><a href="#">Read More &raquo;</a></footer>
+        </article>
+      </li>
+    </ul>
+    <!-- ################################################################################################ -->
+    <!-- / main body -->
+    <div class="clear"></div>
+  </main>
+</div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper bgded overlay" style="background-image:url('resources/images/demo/backgrounds/02.png');">
+  <article class="hoc container clear center"> 
+    <!-- ################################################################################################ -->
+    <h3 class="heading">Nulla eget nunc consequat</h3>
+    <p class="btmspace-50">Pretium leo at auctor tellus proin volutpat aliquet lorem vitae volutpat quam</p>
+    <footer><a class="btn medium" href="#">More Information &raquo;</a></footer>
+    <!-- ################################################################################################ -->
+  </article>
+</div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper row3">
+  <section class="hoc container clear"> 
+    <!-- ################################################################################################ -->
+    <div class="center btmspace-50">
+      <h3 class="font-x2 nospace">Ornare ut suspendisse</h3>
+      <p class="nospace">Tincidunt placerat dui id feugiat duis eu vehicula ipsum id feugiat elit maecenas</p>
+    </div>
+    <div class="group">
+      <article class="one_third first"><a href="#"><img class="btmspace-30" src="resources/images/demo/320x220.png" alt=""></a>
+        <h4 class="nospace btmspace-10 font-x1 uppercase">Tincidunt eget nisi</h4>
+        <ul class="nospace btmspace-10 group font-xs">
+          <li class="fl_left">
+            <time datetime="2045-04-06">6<sup>th</sup> April 2045</time>
+          </li>
+          <li class="fl_right">by <a href="#">Admin</a></li>
+        </ul>
+        <hr>
+        <p>Auctor cursus feugiat sed scelerisque id odio non scelerisque sed ac est rhoncus sodales ante dictum lacinia&hellip;</p>
+        <p class="nospace"><a href="#">Read More &raquo;</a></p>
+      </article>
+      <article class="one_third"><a href="#"><img class="btmspace-30" src="resources/images/demo/320x220.png" alt=""></a>
+        <h4 class="nospace btmspace-10 font-x1 uppercase">Lacinia etiam ornare</h4>
+        <ul class="nospace btmspace-10 group font-xs">
+          <li class="fl_left">
+            <time datetime="2045-04-05">5<sup>th</sup> April 2045</time>
+          </li>
+          <li class="fl_right">by <a href="#">Admin</a></li>
+        </ul>
+        <hr>
+        <p>Morbi tempor ac nibh eu imperdiet diam maecenas in facilisis arcu nec pulvinar risus etiam convallis lacus&hellip;</p>
+        <p class="nospace"><a href="#">Read More &raquo;</a></p>
+      </article>
+      <article class="one_third"><a href="#"><img class="btmspace-30" src="resources/images/demo/320x220.png" alt=""></a>
+        <h4 class="nospace btmspace-10 font-x1 uppercase">Elementum vestibulum</h4>
+        <ul class="nospace btmspace-10 group font-xs">
+          <li class="fl_left">
+            <time datetime="2045-04-04">4<sup>th</sup> April 2045</time>
+          </li>
+          <li class="fl_right">by <a href="#">Admin</a></li>
+        </ul>
+        <hr>
+        <p>Est lectus lacinia enim quis egestas leo urna id ex integer ipsum purus sagittis at eleifend et vestibulum&hellip;</p>
+        <p class="nospace"><a href="#">Read More &raquo;</a></p>
+      </article>
+    </div>
+    <!-- ################################################################################################ -->
+  </section>
+</div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper row4">
+  <footer id="footer" class="hoc clear"> 
+    <!-- ################################################################################################ -->
+    <h3 class="heading">Corklow</h3>
+    <ul class="nospace inline pushright uppercase">
+      <li><a href="#"><i class="fa fa-lg fa-home"></i></a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Contact</a></li>
+      <li><a href="#">Login</a></li>
+      <li><a href="#">Register</a></li>
+    </ul>
+    <ul class="faico clear">
+      <li><a class="faicon-facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+      <li><a class="faicon-twitter" href="#"><i class="fa fa-twitter"></i></a></li>
+      <li><a class="faicon-dribble" href="#"><i class="fa fa-dribbble"></i></a></li>
+      <li><a class="faicon-linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>
+      <li><a class="faicon-google-plus" href="#"><i class="fa fa-google-plus"></i></a></li>
+      <li><a class="faicon-vk" href="#"><i class="fa fa-vk"></i></a></li>
+    </ul>
+    <div id="copyright">
+      <p>Copyright &copy; 2016 - All Rights Reserved - <a href="#">Domain Name</a></p>
+      <p class="font-xs">Template by <a target="_blank" href="http://www.os-templates.com/" title="Free Website Templates">OS Templates</a></p>
+    </div>
+    <!-- ################################################################################################ -->
+  </footer>
+</div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<a id="backtotop" href="#top"><i class="fa fa-chevron-up"></i></a>
+</body>
 </html>

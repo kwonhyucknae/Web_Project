@@ -50,16 +50,6 @@ public class MapController {
 		return"test";
 	}
 	
-	@RequestMapping("/Main")
-	public String FirstPage()
-	{
-		return "main";
-	}
-	@RequestMapping("/Maintest")
-	public String Maintest()
-	{
-		return "maintest";
-	}
 	
 	@RequestMapping("/Maptest")
 	public String Maptest(Model model)

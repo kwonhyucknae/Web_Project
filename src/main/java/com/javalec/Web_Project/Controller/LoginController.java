@@ -54,6 +54,14 @@ public class LoginController {
 		return "login";
 	}
 	
+	@RequestMapping("/logout")
+	public String Logout(HttpSession session)
+	{
+		session.invalidate();
+		return "redirect:Main";
+	}
+	
+	
 	@RequestMapping("/logincheck")
 	public String LoginCheck(HttpServletRequest request,HttpSession session,Model model)
 	{
