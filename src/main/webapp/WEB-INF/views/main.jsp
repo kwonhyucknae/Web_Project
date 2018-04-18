@@ -53,7 +53,7 @@ console.log(logintext);
     </div>
     <div class="fl_right">
       <ul class="nospace">
-        <li><a href="#"><i class="fa fa-lg fa-home"></i></a></li>
+        <li><a href="Main"><i class="fa fa-lg fa-home"></i></a></li>
         <li>
         <%if(request.getAttribute("loginck").equals("login"))
         	{
@@ -68,7 +68,7 @@ console.log(logintext);
         }  	
         %>
         </li>
-        <li><a href="#">Register</a></li>
+        <li><a href="join">Register</a></li>
       </ul>
     </div>
     <!-- ################################################################################################ -->
@@ -87,31 +87,9 @@ console.log(logintext);
     <!-- ################################################################################################ -->
     <nav id="mainav" class="fl_right">
       <ul class="clear">
-        <li class="active"><a href="Maintest">Home</a></li>
-        <li><a class="drop" href="#">Pages</a>
-          <ul>
-            <li><a href="resources/pages/gallery.html">Gallery</a></li>
-            <li><a href="resources/pages/full-width.html">Full Width</a></li>
-            <li><a href="resources/pages/sidebar-left.html">Sidebar Left</a></li>
-            <li><a href="Maptest">Sidebar Right</a></li>
-            <li><a href="resources/pages/basic-grid.html">Basic Grid</a></li>
-          </ul>
-        </li>
-        <li><a class="drop" href="#">Dropdown</a>
-          <ul>
-            <li><a href="#">Level 2</a></li>
-            <li><a class="drop" href="#">Level 2 + Drop</a>
-              <ul>
-                <li><a href="#">Level 3</a></li>
-                <li><a href="#">Level 3</a></li>
-                <li><a href="#">Level 3</a></li>
-              </ul>
-            </li>
-            <li><a href="#">Level 2</a></li>
-          </ul>
-        </li>
-        <li><a href="#">매장찾기</a></li>
-        <li><a href="#">게시판</a></li>
+        <li class="active"><a href="Main">Home</a></li>
+        <li><a href="scMaptest">매장찾기</a></li>
+        <li><a href="boardlist">게시판</a></li>
       </ul>
     </nav>
     <!-- ################################################################################################ -->
