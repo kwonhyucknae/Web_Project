@@ -34,7 +34,7 @@ public class BoardController {
 	final int BLOCK=5;  //페이지 최대 개수 1~5/6~10
 	
 	@RequestMapping("/boardlist")
-	public String boardList(Model model,HttpServletRequest request)
+	public String boardList(Model model,HttpServletRequest request,HttpSession session)
 	{
 		int pageNum=1;
 		BoardDao bdo=sqlSession.getMapper(BoardDao.class);
@@ -58,6 +58,19 @@ public class BoardController {
 		System.out.println("endPage="+endPage);
 		System.out.println("allPage="+allPage);
 		
+		String loginck="";
+		if(session.getAttribute("userId")==null)
+		{
+			loginck="null";
+			loginck="login";	
+		}
+		else
+		{
+			loginck="logout";
+		}
+			
+		model.addAttribute("loginck", loginck);
+		
 		model.addAttribute("startPage",startPage);
 		model.addAttribute("endPage", endPage);
 		model.addAttribute("allPage", allPage);
@@ -71,8 +84,20 @@ public class BoardController {
 	}
 	
 	@RequestMapping("/boardwrite")
-	public String boardWrite()
+	public String boardWrite(HttpSession session,Model model)
 	{
+		String loginck="";
+		if(session.getAttribute("userId")==null)
+		{
+			loginck="null";
+			loginck="login";	
+		}
+		else
+		{
+			loginck="logout";
+		}
+			
+		model.addAttribute("loginck", loginck);
 		
 		return "boardwrite";
 	}
@@ -128,7 +153,7 @@ public class BoardController {
 	
 	
 	@RequestMapping("/boardRead")
-	public String BoardRead(HttpServletRequest request,Model model) throws Exception
+	public String BoardRead(HttpServletRequest request,Model model,HttpSession session) throws Exception
 	{
 		BoardDao bdo=sqlSession.getMapper(BoardDao.class);
 		BoardDto dto=bdo.selectRead(Integer.parseInt(request.getParameter("index")));
@@ -136,6 +161,19 @@ public class BoardController {
 		hit++;
 
 		bdo.updateHit(hit, Integer.parseInt(request.getParameter("index")));
+		
+		String loginck="";
+		if(session.getAttribute("userId")==null)
+		{
+			loginck="null";
+			loginck="login";	
+		}
+		else
+		{
+			loginck="logout";
+		}
+			
+		model.addAttribute("loginck", loginck);
 		
 		model.addAttribute("writer", dto.getNAME());
 		model.addAttribute("redat", bdo.selectRedat(Integer.parseInt(request.getParameter("index"))));
@@ -182,10 +220,22 @@ public class BoardController {
 	}
 	
 	@RequestMapping("/modify")
-	public String Modify(HttpServletRequest request,Model model)
+	public String Modify(HttpServletRequest request,Model model,HttpSession session)
 	{
 		BoardDao bdo=sqlSession.getMapper(BoardDao.class);
 		BoardDto bto=bdo.selectRead(Integer.parseInt(request.getParameter("index")));
+		String loginck="";
+		if(session.getAttribute("userId")==null)
+		{
+			loginck="null";
+			loginck="login";	
+		}
+		else
+		{
+			loginck="logout";
+		}
+			
+		model.addAttribute("loginck", loginck);
 		
 		model.addAttribute("filename", bto.getFILENAME());
 		model.addAttribute("readct",bdo.selectRead(Integer.parseInt(request.getParameter("index"))));
