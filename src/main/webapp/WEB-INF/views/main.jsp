@@ -54,7 +54,20 @@ console.log(logintext);
     <div class="fl_right">
       <ul class="nospace">
         <li><a href="#"><i class="fa fa-lg fa-home"></i></a></li>
-        <li id="logintext"></li>
+        <li>
+        <%if(request.getAttribute("loginck").equals("login"))
+        	{
+        	%>
+        	<a href="login">Login</a>
+        	<% 
+        	}
+        else
+        {%>
+        	<a href="logout">Logout</a>
+        <% 
+        }  	
+        %>
+        </li>
         <li><a href="#">Register</a></li>
       </ul>
     </div>

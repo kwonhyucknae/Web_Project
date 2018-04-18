@@ -80,7 +80,7 @@ public class LoginController {
 			if(request.getParameter("pass").equals(logininfo.get(0).getPW()))
 			{
 				session.setAttribute("userId", request.getParameter("user"));
-				returnURL="main";
+				returnURL="redirect:Main";
 			}
 			else
 			{
