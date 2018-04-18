@@ -186,7 +186,7 @@ function pageNumber()
         </table>
      <div class="button-8">
     <div class="eff-8"></div>
-    <a href="#"> 글쓰기 </a>
+    <a href="boardwrite"> 글쓰기 </a>
   	</div>
       </div>
       <div class="page" align="center">

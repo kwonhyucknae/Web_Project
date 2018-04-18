@@ -12,21 +12,17 @@ import com.javalec.Web_Project.Dto.JoinDto;
 public class LoginCheckInterSeptor extends HandlerInterceptorAdapter{
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception
 	{
-		HttpSession session=request.getSession(false);
+		HttpSession session=request.getSession();
+		String userId=(String)session.getAttribute("userId");
 		
-		if(session==null)
+		if(userId==null||userId.trim().equals(""))
 		{
-			response.sendRedirect(request.getContextPath()+"/login");
-			return false;
-		}
-		JoinDto member=(JoinDto)session.getAttribute("member"); 
-		
-		if(member==null)
-		{
+			session.invalidate();
 			response.sendRedirect(request.getContextPath()+"/login");
 			return false;
 			
 		}
+		
 		return true;
 	}
 	
