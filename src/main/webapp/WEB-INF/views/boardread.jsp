@@ -239,7 +239,9 @@ disply:inline;
       
       <form action="modify">
       	 <input type="hidden" name="index" value=${readct.NUM}>
-          <% if(session.getAttribute("userId").equals(request.getAttribute("writer")))
+          <% 
+          if(session.getAttribute("userId")!=null)
+          if(session.getAttribute("userId").equals(request.getAttribute("writer")))
           {%>
          <input type="submit" class="btn" value="수정하기">
           <% }%>
