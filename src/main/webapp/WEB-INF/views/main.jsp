@@ -16,23 +16,7 @@ Licence URI: http://www.os-templates.com/template-terms
 <script src="resources/layout/scripts/jquery.min.js"></script>
 <script src="resources/layout/scripts/jquery.backtotop.js"></script>
 <script src="resources/layout/scripts/jquery.mobilemenu.js"></script>
-<script type="text/javascript">
-var tmp="<%= request.getSession().getAttribute("userId")%>";
-var logintext="";
-console.log(tmp);
-if(tmp==null)
-	logintext="<a href=\"login\">Login</a>";
-else if(tmp!=null)
-	logintext="<a href=\"logout\">Logout</a>";
 
-	$(function(){
-	$('#logintext').html(logintext);
-	
-	});
-
-console.log(logintext);
-	
-</script>
 <title>Corklow</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">

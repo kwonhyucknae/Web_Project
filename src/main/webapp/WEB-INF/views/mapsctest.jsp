@@ -215,10 +215,21 @@ overflow-x:hidden;
     <div class="fl_right">
       <ul class="nospace">
         <li><a href="#"><i class="fa fa-lg fa-home"></i></a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Contact</a></li>
-        <li><a href="#">Login</a></li>
-        <li><a href="#">Register</a></li>
+		<li>
+        <%if(request.getAttribute("loginck").equals("login"))
+        	{
+        	%>
+        	<a href="login">Login</a>
+        	<% 
+        	}
+        else
+        {%>
+        	<a href="logout">Logout</a>
+        <% 
+        }  	
+        %>
+        </li>
+        <li><a href="join">Register</a></li>
       </ul>
     </div>
     <!-- ################################################################################################ -->

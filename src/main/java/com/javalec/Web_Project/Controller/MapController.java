@@ -11,11 +11,10 @@ import java.util.Locale;
 
 import javax.activation.CommandMap;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -62,10 +61,22 @@ public class MapController {
 	}
 	
 	@RequestMapping("/scMaptest")
-	public String ScMaptest(Model model)
+	public String ScMaptest(Model model,HttpSession session)
 	{
 		IDao dao=sqlSession.getMapper(IDao.class);
 		
+		String loginck="";
+		if(session.getAttribute("userId")==null)
+		{
+			loginck="null";
+			loginck="login";	
+		}
+		else
+		{
+			loginck="logout";
+		}
+			
+		model.addAttribute("loginck", loginck);	
 		model.addAttribute("list",dao.listDao());
 		
 		return "mapsctest";
