@@ -138,7 +138,7 @@ width:100px;
     <ul>
       <li><a href="Main">Home</a></li>
       <li><a href="boardlist">게시판</a></li>
-      <li><a href="modify">수정</a></li>
+      <li><a href="modify?indext=${readct.NUM }">수정</a></li>
     </ul>
     <!-- ################################################################################################ -->
   </div>

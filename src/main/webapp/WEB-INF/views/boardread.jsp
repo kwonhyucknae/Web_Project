@@ -90,11 +90,22 @@ disply:inline;
     </div>
     <div class="fl_right">
       <ul class="nospace">
-        <li><a href="#"><i class="fa fa-lg fa-home"></i></a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Contact</a></li>
-        <li><a href="#">Login</a></li>
-        <li><a href="#">Register</a></li>
+        <li><a href="Main"><i class="fa fa-lg fa-home"></i></a></li>
+        <li>
+        <%if(request.getAttribute("loginck").equals("login"))
+        	{
+        	%>
+        	<a href="login">Login</a>
+        	<% 
+        	}
+        else
+        {%>
+        	<a href="logout">Logout</a>
+        <% 
+        }  	
+        %>
+        </li>
+        <li><a href="join">Register</a></li>
       </ul>
     </div>
     <!-- ################################################################################################ -->
@@ -107,37 +118,15 @@ disply:inline;
   <header id="header" class="hoc clear"> 
     <!-- ################################################################################################ -->
     <div id="logo" class="fl_left">
-      <h1><a href="../index.html">Corklow</a></h1>
-      <p>Congue pulvinar velit</p>
+      <h1><a href="Main">오늘 뭐먹지?</a></h1>
+      <p>매장을 손쉽게 찾아보세요</p>
     </div>
     <!-- ################################################################################################ -->
     <nav id="mainav" class="fl_right">
       <ul class="clear">
-        <li><a href="../index.html">Home</a></li>
-        <li class="active"><a class="drop" href="#">Pages</a>
-          <ul>
-            <li><a href="gallery.html">Gallery</a></li>
-            <li class="active"><a href="full-width.html">Full Width</a></li>
-            <li><a href="sidebar-left.html">Sidebar Left</a></li>
-            <li><a href="sidebar-right.html">Sidebar Right</a></li>
-            <li><a href="basic-grid.html">Basic Grid</a></li>
-          </ul>
-        </li>
-        <li><a class="drop" href="#">Dropdown</a>
-          <ul>
-            <li><a href="#">Level 2</a></li>
-            <li><a class="drop" href="#">Level 2 + Drop</a>
-              <ul>
-                <li><a href="#">Level 3</a></li>
-                <li><a href="#">Level 3</a></li>
-                <li><a href="#">Level 3</a></li>
-              </ul>
-            </li>
-            <li><a href="#">Level 2</a></li>
-          </ul>
-        </li>
-        <li><a href="#">Link Text</a></li>
-        <li><a href="#">Link Text</a></li>
+        <li><a href="Main">Home</a></li>
+        <li><a href="scMaptest">매장찾기</a></li>
+        <li><a href="boardlist">게시판</a></li>
       </ul>
     </nav>
     <!-- ################################################################################################ -->
@@ -150,10 +139,9 @@ disply:inline;
   <div id="breadcrumb" class="hoc clear"> 
     <!-- ################################################################################################ -->
     <ul>
-      <li><a href="#">Home</a></li>
-      <li><a href="#">Lorem</a></li>
-      <li><a href="#">Ipsum</a></li>
-      <li><a href="#">Dolor</a></li>
+      <li><a href="Main">Home</a></li>
+      <li><a href="boardlist">게시판</a></li>
+      <li><a href="boardRead?index=${readct.NUM}">읽기</a></li>
     </ul>
     <!-- ################################################################################################ -->
   </div>
